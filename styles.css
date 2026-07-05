@@ -1,0 +1,499 @@
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("assets/fonts/NeueMontreal-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("assets/fonts/NeueMontreal-Medium.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Montreal";
+  src: url("assets/fonts/NeueMontreal-Bold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #011f26;
+  --deep: #000000;
+  --sea: #072b37;
+  --paper: #d9d1c7;
+  --gold: #bda385;
+  --coral: #d9d1c7;
+  --white: #ffffff;
+  --danger: #b52828;
+  --success: #147a4f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--deep);
+  color: var(--ink);
+  font-family: "Neue Montreal", Arial, sans-serif;
+  line-height: 1.45;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--deep) url("assets/img/hero/bg-kv-27.webp") center / cover no-repeat;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  mix-blend-mode: darken;
+}
+
+h2 {
+  margin: 0;
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  min-height: 50px;
+  padding: 0 24px;
+  border: 1px groove var(--gold);
+  border-radius: 20px;
+  background: var(--coral);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.button:hover {
+  background: var(--gold);
+  color: var(--sea);
+  transform: translateY(-1px);
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
+.signup {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 95px 0;
+  overflow: hidden;
+  background-image: url("assets/img/hero/bg-kv-27.webp");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--paper);
+}
+
+.signup::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.42);
+  pointer-events: none;
+}
+
+.signup > * {
+  position: relative;
+  z-index: 1;
+  width: min(690px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-heading {
+  max-width: 600px;
+  margin-bottom: 3.25rem;
+  color: var(--paper);
+  text-align: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 0 12px;
+  max-width: 690px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.field {
+  grid-column: span 6;
+  display: grid;
+  gap: 7px;
+  margin-bottom: 1.2rem;
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field--third {
+  grid-column: span 3;
+}
+
+.field--two-third {
+  grid-column: span 7;
+}
+
+.field--forty {
+  grid-column: span 4;
+}
+
+.field--twenty {
+  grid-column: span 2;
+}
+
+label {
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.required {
+  color: #fd4008;
+  margin-left: 3px;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: auto;
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 14px 1em;
+}
+
+@media (min-width: 1025px) {
+  .signup {
+    background-attachment: fixed;
+  }
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid rgba(189, 163, 133, 0.35);
+  border-color: var(--gold);
+}
+
+.field__hint {
+  color: var(--paper);
+  font-size: 0.82rem;
+}
+
+.field__hint:empty {
+  display: none;
+}
+
+.form__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.form__actions .button {
+  margin-left: auto;
+}
+
+.form__status {
+  flex: 0 0 100%;
+  order: 2;
+  min-height: 24px;
+  margin: 0;
+  font-weight: 700;
+  color: var(--paper);
+  text-align: right;
+}
+
+.form__status.is-success {
+  color: var(--success);
+}
+
+.form__status.is-error {
+  color: var(--danger);
+}
+
+.countdown-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+  min-height: 1080px;
+  padding: 100px 15px;
+  overflow: hidden;
+  background: var(--deep) url("assets/img/hero/banner-contagem-2026.webp") bottom center / cover no-repeat;
+  color: var(--white);
+  text-align: center;
+}
+
+.countdown-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.countdown-section > * {
+  position: relative;
+}
+
+.countdown-section__media {
+  display: block;
+  width: min(1305px, 100%);
+  padding-top: 200px;
+}
+
+.countdown-section__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(86px, 1fr));
+  gap: 0;
+  width: min(992px, 100%);
+}
+
+.countdown div {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.countdown strong {
+  display: block;
+  font-size: 105px;
+  font-weight: 800;
+  line-height: 0.95;
+}
+
+.countdown span {
+  display: block;
+  margin-top: 12px;
+  color: var(--white);
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 235px;
+  padding: 44px 20px 58px;
+  background: var(--deep);
+  color: var(--white);
+}
+
+.footer__content {
+  display: grid;
+  gap: 26px;
+  justify-items: center;
+}
+
+.footer__label {
+  margin: 0;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer__row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+}
+
+.footer__logo {
+  width: min(248px, 72vw);
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  flex-wrap: wrap;
+}
+
+.social a {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.social svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    min-height: 760px;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .form {
+    padding: 0;
+  }
+
+  .field,
+  .field--third,
+  .field--two-third,
+  .field--forty,
+  .field--twenty {
+    grid-column: 1 / -1;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+  }
+
+  .countdown-section {
+    min-height: 580px;
+    padding: 75px 30px;
+  }
+
+  .countdown-section__media {
+    padding-top: 55px;
+  }
+
+  .countdown strong {
+    font-size: 70px;
+    letter-spacing: 0.04em;
+  }
+
+  .countdown span {
+    font-size: 20px;
+    letter-spacing: 1.1px;
+  }
+
+  .footer__row {
+    flex-direction: column;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signup {
+    padding: 48px 0 60px;
+  }
+
+  .form__actions {
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .countdown {
+    grid-template-columns: 1fr;
+  }
+
+  .countdown-section {
+    min-height: 484px;
+    padding: 60px 0;
+    background-position: -100px 0%;
+  }
+
+  .countdown-section::before {
+    background: transparent;
+  }
+
+  .countdown-section__media {
+    padding: 20px;
+  }
+
+  .countdown strong {
+    font-size: 55px;
+  }
+
+  .countdown span {
+    font-size: 12px;
+  }
+}
