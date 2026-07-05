@@ -3,6 +3,8 @@ const APP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxy_4l0c9bgUmiEp
 const form = document.getElementById('lead-form');
 const statusEl = document.getElementById('form-status');
 const submitButton = document.getElementById('submit-button');
+const SUBMIT_FALLBACK_DELAY = 5000;
+let submitFallbackTimer = null;
 
 function setStatus(message, type = '') {
   if (!statusEl) return;
@@ -149,10 +151,19 @@ function createHiddenIframe() {
   return iframe;
 }
 
-function openConfirmationPopup() {
+function setConfirmationImage(contactStatus = 'created') {
+  const popupImage = document.querySelector('#elementor-popup-modal-3873 [data-created-src][data-updated-src]');
+  if (!popupImage) return;
+
+  const imageSrc = contactStatus === 'updated' ? popupImage.dataset.updatedSrc : popupImage.dataset.createdSrc;
+  if (imageSrc) popupImage.src = imageSrc;
+}
+
+function openConfirmationPopup(contactStatus = 'created') {
   const popup = document.getElementById('elementor-popup-modal-3873');
   if (!popup) return;
 
+  setConfirmationImage(contactStatus);
   popup.hidden = false;
   document.body.classList.add('dialog-prevent-scroll');
 
@@ -212,6 +223,78 @@ function submitToAppsScript() {
   else form.setAttribute('target', originalTarget);
 }
 
+function finishSuccessfulSubmit(contactStatus = 'created') {
+  if (submitFallbackTimer) {
+    window.clearTimeout(submitFallbackTimer);
+    submitFallbackTimer = null;
+  }
+
+  form.reset();
+  submitButton.disabled = false;
+  setStatus('Enviado com Sucesso.', 'success');
+  openConfirmationPopup(contactStatus === 'updated' ? 'updated' : 'created');
+}
+
+function parseAppsScriptMessage(rawData) {
+  if (!rawData) return null;
+  if (typeof rawData === 'object') return rawData;
+
+  if (typeof rawData === 'string') {
+    try {
+      return JSON.parse(rawData);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  return null;
+}
+
+function getContactStatus(data) {
+  const status = data.contact_status || data.contactStatus || data.status || data.action || '';
+  const normalizedStatus = String(status).toLowerCase();
+
+  if (normalizedStatus === 'created' || normalizedStatus === 'updated' || normalizedStatus === 'invalid') {
+    return normalizedStatus;
+  }
+
+  if (normalizedStatus === 'validation_error') return 'invalid';
+
+  return '';
+}
+
+function setupAppsScriptResponse() {
+  window.addEventListener('message', event => {
+    const data = parseAppsScriptMessage(event.data);
+    if (!data) return;
+
+    const contactStatus = getContactStatus(data);
+    if (data.source !== 'camarote-mar-form' && !contactStatus) return;
+
+    if (submitFallbackTimer) {
+      window.clearTimeout(submitFallbackTimer);
+      submitFallbackTimer = null;
+    }
+
+    const responseFailed = data.ok === false || data.ok === 'false' || contactStatus === 'invalid';
+
+    if (responseFailed) {
+      submitButton.disabled = false;
+      setStatus(data.user_message || 'NÃ£o foi possÃ­vel concluir o envio agora. Tente novamente em instantes.', 'error');
+      return;
+    }
+
+    if (contactStatus === 'created' || contactStatus === 'updated') {
+      finishSuccessfulSubmit(contactStatus);
+      return;
+    }
+
+    if (data.ok === true) {
+      finishSuccessfulSubmit('created');
+    }
+  });
+}
+
 function setupFormSubmit() {
   if (!form) return;
 
@@ -225,12 +308,10 @@ function setupFormSubmit() {
 
     submitToAppsScript();
 
-    window.setTimeout(() => {
-      form.reset();
-      submitButton.disabled = false;
-      setStatus('Enviado com Sucesso.', 'success');
-      openConfirmationPopup();
-    }, 1400);
+    if (submitFallbackTimer) window.clearTimeout(submitFallbackTimer);
+    submitFallbackTimer = window.setTimeout(() => {
+      finishSuccessfulSubmit('created');
+    }, SUBMIT_FALLBACK_DELAY);
   });
 }
 
@@ -266,5 +347,6 @@ function setupCountdown() {
 
 applyMasks();
 setupConfirmationPopup();
+setupAppsScriptResponse();
 setupFormSubmit();
 setupCountdown();
