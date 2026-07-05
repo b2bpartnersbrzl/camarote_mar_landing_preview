@@ -149,6 +149,44 @@ function createHiddenIframe() {
   return iframe;
 }
 
+function openConfirmationPopup() {
+  const popup = document.getElementById('elementor-popup-modal-3873');
+  if (!popup) return;
+
+  popup.hidden = false;
+  document.body.classList.add('dialog-prevent-scroll');
+
+  const closeButton = popup.querySelector('.dialog-close-button');
+  if (closeButton) closeButton.focus();
+}
+
+function closeConfirmationPopup() {
+  const popup = document.getElementById('elementor-popup-modal-3873');
+  if (!popup) return;
+
+  popup.hidden = true;
+  document.body.classList.remove('dialog-prevent-scroll');
+}
+
+function setupConfirmationPopup() {
+  const popup = document.getElementById('elementor-popup-modal-3873');
+  if (!popup) return;
+
+  const closeButton = popup.querySelector('.dialog-close-button');
+
+  if (closeButton) {
+    closeButton.addEventListener('click', closeConfirmationPopup);
+  }
+
+  popup.addEventListener('click', event => {
+    if (event.target === popup) closeConfirmationPopup();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !popup.hidden) closeConfirmationPopup();
+  });
+}
+
 function submitToAppsScript() {
   if (!form) return;
 
@@ -190,7 +228,8 @@ function setupFormSubmit() {
     window.setTimeout(() => {
       form.reset();
       submitButton.disabled = false;
-      setStatus('Cadastro recebido. Aguarde as próximas comunicações do Camarote Mar.', 'success');
+      setStatus('Enviado com Sucesso.', 'success');
+      openConfirmationPopup();
     }, 1400);
   });
 }
@@ -226,5 +265,6 @@ function setupCountdown() {
 }
 
 applyMasks();
+setupConfirmationPopup();
 setupFormSubmit();
 setupCountdown();

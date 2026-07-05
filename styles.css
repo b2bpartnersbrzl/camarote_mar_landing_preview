@@ -265,17 +265,31 @@ select:focus {
   order: 2;
   min-height: 24px;
   margin: 0;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--paper);
-  text-align: right;
+  text-align: left;
 }
 
 .form__status.is-success {
-  color: var(--success);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(217, 209, 199, 0.24);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.form__status.is-success::before {
+  content: "✓";
+  color: #00a33c;
+  font-size: 22px;
+  line-height: 1;
 }
 
 .form__status.is-error {
   color: var(--danger);
+  font-weight: 700;
+  text-align: right;
 }
 
 .countdown-section {
@@ -408,6 +422,71 @@ select:focus {
   fill: currentColor;
 }
 
+body.dialog-prevent-scroll {
+  overflow: hidden;
+}
+
+#elementor-popup-modal-3873[hidden] {
+  display: none;
+}
+
+#elementor-popup-modal-3873 {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  pointer-events: all;
+}
+
+#elementor-popup-modal-3873 .dialog-widget-content {
+  position: relative;
+  overflow: hidden;
+  background-image: url("assets/img/popup/pop-bg.jpg");
+  background-position: center right;
+  border-radius: 0;
+  box-shadow: 2px 8px 23px 3px rgba(0, 0, 0, 0.2);
+  animation-duration: 0.5s;
+}
+
+#elementor-popup-modal-3873 .dialog-message {
+  width: 420px;
+  height: auto;
+  line-height: 0;
+}
+
+#elementor-popup-modal-3873 .dialog-close-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+}
+
+#elementor-popup-modal-3873 .dialog-close-button svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--paper);
+}
+
+.elementor-3873 img {
+  display: block;
+  width: 420px;
+  height: auto;
+  max-width: 100%;
+}
+
 @media (max-width: 820px) {
   .hero {
     min-height: 760px;
@@ -495,5 +574,14 @@ select:focus {
 
   .countdown span {
     font-size: 12px;
+  }
+
+  #elementor-popup-modal-3873 .dialog-message {
+    width: 360px;
+  }
+
+  #elementor-popup-modal-3873 .dialog-widget-content {
+    background-position: top center;
+    background-size: cover;
   }
 }
