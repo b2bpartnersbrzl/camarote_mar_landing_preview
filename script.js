@@ -235,6 +235,12 @@ function finishSuccessfulSubmit(contactStatus = 'created') {
   openConfirmationPopup(contactStatus === 'updated' ? 'updated' : 'created');
 }
 
+function finishUnconfirmedSubmit() {
+  submitFallbackTimer = null;
+  submitButton.disabled = false;
+  setStatus('Cadastro enviado. Aguardando confirmação do status.', 'success');
+}
+
 function parseAppsScriptMessage(rawData) {
   if (!rawData) return null;
   if (typeof rawData === 'object') return rawData;
@@ -278,9 +284,15 @@ function setupAppsScriptResponse() {
 
     const responseFailed = data.ok === false || data.ok === 'false' || contactStatus === 'invalid';
 
+    if (responseFailed && data.message && !data.user_message) {
+      submitButton.disabled = false;
+      setStatus(data.message, 'error');
+      return;
+    }
+
     if (responseFailed) {
       submitButton.disabled = false;
-      setStatus(data.user_message || 'NÃ£o foi possÃ­vel concluir o envio agora. Tente novamente em instantes.', 'error');
+      setStatus(data.user_message || 'Nao foi possivel concluir o envio agora. Tente novamente em instantes.', 'error');
       return;
     }
 
@@ -310,7 +322,7 @@ function setupFormSubmit() {
 
     if (submitFallbackTimer) window.clearTimeout(submitFallbackTimer);
     submitFallbackTimer = window.setTimeout(() => {
-      finishSuccessfulSubmit('created');
+      finishUnconfirmedSubmit();
     }, SUBMIT_FALLBACK_DELAY);
   });
 }
