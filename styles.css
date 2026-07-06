@@ -55,6 +55,10 @@ video {
   max-width: 100%;
 }
 
+img {
+  height: auto;
+}
+
 a {
   color: inherit;
 }
@@ -144,7 +148,7 @@ h2 {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.42);
   pointer-events: none;
 }
 
@@ -289,7 +293,7 @@ select:focus {
 }
 
 .form__status.is-success::before {
-  content: "✓";
+  content: "\2713";
   color: #00a33c;
   font-size: 22px;
   line-height: 1;
@@ -412,6 +416,7 @@ select:focus {
 
 .footer__logo {
   width: min(190px, 72vw);
+  height: auto;
 }
 
 .social {
