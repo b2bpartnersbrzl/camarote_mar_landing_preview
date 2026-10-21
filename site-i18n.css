@@ -424,3 +424,15 @@ main > .lineup-section {
     display: none;
   }
 }
+
+/* A imagem original e o SVG textual se movem juntos no painel mobile. */
+@media (max-width: 640px) {
+  .lineup-section__mobile-slide {
+    position: absolute;
+    inset: 0;
+  }
+
+  .lineup-section__mobile-slide[hidden] {
+    display: none;
+  }
+}
