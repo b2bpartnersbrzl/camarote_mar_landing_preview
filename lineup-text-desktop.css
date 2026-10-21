@@ -1,0 +1,36 @@
+/* Reconstrução textual somente do Lineup PT desktop. */
+svg.lineup-copy { display: none !important; }
+
+.lineup-section__original-content {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 821px) {
+  html[data-language="pt-BR"] #lineup svg.lineup-copy {
+    display: block !important;
+    font-family: "Neue Montreal", Arial, sans-serif;
+    fill: #fff;
+    user-select: text;
+  }
+
+  html[data-language="pt-BR"] #lineup .lineup-section__original-content,
+  html[data-language="pt-BR"] #lineup picture,
+  html[data-language="pt-BR"] #lineup [data-lineup-cta] > img {
+    display: none;
+  }
+
+  #lineup .lineup-section__day-content > svg.lineup-copy {
+    width: 100%;
+    height: auto;
+  }
+
+  #lineup svg.lineup-copy text { white-space: pre; }
+
+  html[data-language="pt-BR"] #lineup svg.lineup-copy--cta {
+    width: 100%;
+    height: 100%;
+    fill: #070a0d;
+  }
+}

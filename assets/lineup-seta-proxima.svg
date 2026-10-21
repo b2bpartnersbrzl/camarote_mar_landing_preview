@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2300 380 121 140"><defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #070a0d;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-4 {
+        fill: #f5f1ea;
+        stroke: #f5f1ea;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <path id="Seta_vetorizada_-_Camada_2" data-name="Seta vetorizada - Camada 2" class="cls-2" d="M2361,393c21.71-.3,36.99,7.46,46,20l4,3v2l2,1,1,4h1l1,4h1v3h1v3h1v4h1c1.17,3.98-.05,23.21-1,26h-1v4h-1l-1,4h-1l-2,6-2,1v2l-3,2v2l-3,2-4,5h-2l-1,2h-2l-1,2h-2v1h-2v1h-2v1h-2v1h-2v1h-3v1h-4v1h-6v1c-5.39,1.52-21.72-1.59-25-3v-1h-2v-1h-3v-1h-2l-1-2-4-1-1-2h-2l-3-4-6-5c-7.63-10.65-15.81-29.35-10-47l1-7h1l1-4h1v-3h1l1-3,2-1v-2l2-1v-2l3-2,5-6h2l1-2h2l1-2h2v-1h2v-1h2v-1h2v-1c3.43-1.74,13.68-1.99,16-4ZM2364,425l-1,5c3.04,1.73,4.63,4.63,7,7,2.67,2.67,6.04,4.6,8,8h-38c-.81,1.31-.7,1.18-2,2l1,4h38c-2.2,8.05-13.32,9.39-14,19,1.72.65,3.14.95,6,1l15-16,5-4v-5c-6.67-7-13.33-14-20-21h-5Z" />
+        </svg>

@@ -1,0 +1,20 @@
+/* FAQ interna PT/EN: mesmo fundo fixo da seção 02 do site. */
+body.faq-page {
+  isolation: isolate;
+  background: #000;
+}
+
+body.faq-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #000 url("assets/bg-lineup-desktop.jpg") center center / cover no-repeat;
+}
+
+@media (max-width: 640px) {
+  body.faq-page::before {
+    background-image: url("assets/bg-lineup-mobile.jpg");
+  }
+}

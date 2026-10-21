@@ -1,0 +1,24 @@
+/* Fontes originais incorporadas, sem dependência de instalação local. */
+@font-face{font-family:"Neue Montreal Web Regular";src:url("assets/fonts/NeueMontrealWeb-Regular.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web Medium";src:url("assets/fonts/NeueMontrealWeb-Medium.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web Bold";src:url("assets/fonts/NeueMontrealWeb-Bold.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web Light";src:url("assets/fonts/NeueMontrealWeb-Light.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web Italic";src:url("assets/fonts/NeueMontrealWeb-Italic.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web MediumItalic";src:url("assets/fonts/NeueMontrealWeb-MediumItalic.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web BoldItalic";src:url("assets/fonts/NeueMontrealWeb-BoldItalic.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+@font-face{font-family:"Neue Montreal Web LightItalic";src:url("assets/fonts/NeueMontrealWeb-LightItalic.woff") format("woff");font-style:normal;font-weight:400;font-display:swap;}
+.web-Regular{font-family:"Neue Montreal Web Regular";font-weight:400;font-style:normal;font-synthesis:none}
+.web-Medium{font-family:"Neue Montreal Web Medium";font-weight:400;font-style:normal;font-synthesis:none}
+.web-Bold{font-family:"Neue Montreal Web Bold";font-weight:400;font-style:normal;font-synthesis:none}
+.web-Light{font-family:"Neue Montreal Web Light";font-weight:400;font-style:normal;font-synthesis:none}
+.web-Italic{font-family:"Neue Montreal Web Italic";font-weight:400;font-style:normal;font-synthesis:none}
+.web-MediumItalic{font-family:"Neue Montreal Web MediumItalic";font-weight:400;font-style:normal;font-synthesis:none}
+.web-BoldItalic{font-family:"Neue Montreal Web BoldItalic";font-weight:400;font-style:normal;font-synthesis:none}
+.web-LightItalic{font-family:"Neue Montreal Web LightItalic";font-weight:400;font-style:normal;font-synthesis:none}
+
+img[data-text-ready]{display:none!important}
+svg[data-text-art][hidden]{display:none!important}
+svg[data-text-art]{user-select:text}
+svg[data-text-art] text{white-space:pre;stroke:none}
+.lineup-section__original-content{display:block;width:100%;height:auto}
+.verdadeiro-section__emblem{pointer-events:none}

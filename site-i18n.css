@@ -1,0 +1,426 @@
+/* O idioma escolhido na hero define o modo técnico do formulário. */
+#lead-form .residence-selector--primary {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  html[data-language="en"] .hero__dates[src="assets/data_en_session1_mobile_v2.svg"] {
+    width: auto;
+    height: 61.0583px;
+  }
+
+  html[data-language="en"] .post-hero-section__numbers {
+    width: 76.4061483002%;
+    transform: translate(-50%, -45%);
+  }
+
+  html[data-language="en"] .verdadeiro-section__mobile-art[src="assets/sessao4_01_en_mar_v2.svg"] {
+    width: 85.6305445770%;
+  }
+
+  html[data-language="en"] .social-section__art {
+    width: 80.1805990845%;
+  }
+
+  html[data-language="en"] .facilities-section__art {
+    width: 99.8189340308%;
+  }
+
+  html[data-language="en"] .othon__description {
+    width: 75.3554953518%;
+  }
+
+  html[data-language="en"] .after-othon-section__mobile-art {
+    width: 79.0983894789%;
+  }
+
+  html[data-language="en"] .section-heading__art[src="assets/form_title_en.svg"] {
+    width: 100%;
+    height: auto;
+    transform: translateY(0);
+  }
+
+  html[data-language="pt-BR"] .section-heading__art[src="assets/ativo-23.svg"] {
+    transform: translateY(20%);
+  }
+
+  html[data-language="en"] .video__description[src="assets/descricao_video_en_marca_v3.svg"] {
+    width: 87.6007532797%;
+  }
+}
+
+@media (max-width: 820px) {
+  html[data-language="en"] .faq__heading--mobile[src="assets/faq_title_mobile_en.svg"] {
+    width: 115.5542065728%;
+    transform: translate(-50%, -30%);
+  }
+
+  html[data-language="en"] .parade-order-mark[src="assets/img/hero/ordem_en.svg"] {
+    width: min(350.7965235996px, 39.6552591895vw);
+  }
+}
+
+@media (min-width: 641px) {
+  .post-hero-section.is-bg-ready {
+    background: #000 url("assets/bg_numeros_desktop.jpg") center center / cover no-repeat;
+  }
+
+  .verdadeiro-section.is-bg-ready {
+    background: #000 url("assets/bg_mar_desktop.jpg") center center / cover no-repeat;
+  }
+
+  html[data-language="pt-BR"] .post-video-section.is-bg-ready {
+    background: #000 url("assets/bg_varanda_desktop_pt.jpg") center center / cover no-repeat;
+  }
+
+  .social-section.is-bg-ready {
+    background: #000 url("assets/bg_social_desktop.jpg") center center / cover no-repeat;
+  }
+
+  .othon-section.is-bg-ready {
+    background: #000 url("assets/bg_othon_desktop.jpg") center center / cover no-repeat;
+  }
+
+  html[data-language="en"] .hero__dates[src="assets/data_en_session1_desktop_v2.svg"] {
+    width: auto;
+    height: clamp(61.0583px, 7.6323vw, 147.5575px);
+  }
+
+  html[data-language="en"] .post-hero-section__numbers[src="assets/numeros_en_session2_desktop_v3.svg"] {
+    width: auto;
+    height: 29.56636634%;
+  }
+
+  html[data-language="en"] .verdadeiro-section__logo[src="assets/verdadeiro_en_mar_v2.svg"] {
+    width: auto;
+    height: 57.37932603%;
+  }
+
+  html[data-language="en"] .video__description[src="assets/descricao_video_en_marca_v3.svg"] {
+    width: 104.28661105%;
+    max-width: none;
+  }
+
+  html[data-language="en"] .social-section__art[src="assets/ativo_2_en_mar_v2.svg"] {
+    width: auto;
+    height: 39.82819955%;
+  }
+
+  html[data-language="en"] .facilities-section__art[src="assets/ativo_3_en_mar_v2.svg"] {
+    width: auto;
+    height: 45.34322167%;
+  }
+
+  html[data-language="en"] .othon__description[src="assets/othon_descricao_en.svg"] {
+    width: 73.5183893163%;
+  }
+
+  html[data-language="en"] .after-othon-section__art-image[src="assets/ativo-13_en_mar_v2.svg"] {
+    width: 78.3602911970%;
+  }
+
+  html[data-language="en"] .section-heading__art[src="assets/form_title_en.svg"] {
+    width: calc((100% - clamp(36px, 9vw, 88px)) * 0.711901647512);
+    transform: translateY(20%);
+  }
+
+  html[data-language="pt-BR"] .section-heading__art[src="assets/ativo-23.svg"] {
+    transform: translateY(20%);
+  }
+
+}
+
+@media (min-width: 821px) {
+  html[data-language="en"] .parade-order-mark[src="assets/img/hero/ordem_en.svg"] {
+    width: min(19.0650284565%, 350.7965235996px);
+  }
+}
+
+/* Line-up: segunda secao no desktop PT/EN. */
+main > .lineup-section {
+  display: none;
+  order: 2;
+}
+
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) main > .lineup-section {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3480 / 2160;
+    overflow: hidden;
+    background: #000 url("assets/bg-lineup-desktop.jpg") center center / cover no-repeat;
+  }
+}
+
+/* Composicao unica: escala e centro compartilhados pelas tres partes. */
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__composition {
+    position: absolute;
+    inset: 0;
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  /* Compensa a escala do grupo para preservar o deslocamento aprovado de 5%. */
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art--lateral-esquerda {
+    transform: translateX(-5.88235294117647%);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art--lateral-direita {
+    transform: translateX(5.88235294117647%);
+  }
+}
+
+/* Programacao do dia 05, centralizada na composicao do line-up. */
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__day {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 72.943594441715%;
+    height: auto;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Controles reais separados do conteudo, nas coordenadas da arte original. */
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__day-content {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control {
+    position: absolute;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    line-height: 0;
+    opacity: 1;
+    transform: none;
+    cursor: pointer;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control:disabled {
+    cursor: default;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control:focus-visible {
+    outline: 2px solid #bda385;
+    outline-offset: 4px;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control :is(img, :where(svg[data-text-art])) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control--previous {
+    left: 0.000000000000%;
+    top: 36.630380674187%;
+    width: 4.957694341618%;
+    height: 12.679747156449%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control--next {
+    left: 95.022474881015%;
+    top: 35.691140144079%;
+    width: 4.999008461132%;
+    height: 13.149367421503%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control--cta {
+    left: 60.153358011634%;
+    top: 43.392912490960%;
+    width: 27.432575356954%;
+    height: 11.083038255267%;
+  }
+}
+
+/* Painel estavel durante a navegacao entre as datas. */
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__slides {
+    position: relative;
+    aspect-ratio: 2420.48 / 1064.69;
+    /* Recorte horizontal da transicao; a lista do dia 06 ultrapassa a base em 3.56%. */
+    clip-path: inset(0 0 -4% 0);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__day-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__control[hidden],
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__day-content[hidden] {
+    display: none;
+  }
+
+}
+
+/* Line-up mobile PT/EN: fundo original 2160 x 3840. */
+@media (max-width: 640px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) main > .lineup-section {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2160 / 3840;
+    overflow: hidden;
+    background: #000 url("assets/bg-lineup-mobile.jpg") center center / cover no-repeat;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__composition {
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art--datas {
+    top: 10%;
+    left: 50%;
+    width: 35%;
+    transform: translateX(-50%);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art--lateral-esquerda {
+    left: 4%;
+    bottom: 8%;
+    height: 27%;
+    transform: scale(0.67);
+    transform-origin: center center;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__art--lateral-direita {
+    right: 4%;
+    top: 2%;
+    height: 27%;
+    transform: scale(0.67);
+    transform-origin: center top;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__day {
+    display: none;
+  }
+}
+
+.lineup-section__mobile-day {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-day {
+    display: block;
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    width: 84%;
+    aspect-ratio: 1847.51 / 2276.69;
+    transform: translateX(-50%);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-content {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control {
+    position: absolute;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    line-height: 0;
+    opacity: 1;
+    cursor: pointer;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control:disabled {
+    cursor: default;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control[hidden] {
+    display: none;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control:focus-visible {
+    outline: 2px solid #bda385;
+    outline-offset: 4px;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control :is(img, :where(svg[data-text-art])) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control--previous {
+    left: 60.946896092579%;
+    top: 89.032762475348%;
+    width: 10.608873564960%;
+    height: 8.652912781275%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control--next {
+    left: 73.829099707173%;
+    top: 89.032762475348%;
+    width: 10.608873564960%;
+    height: 8.652912781275%;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-control--cta {
+    left: 46.386758393730%;
+    top: 41.419780470771%;
+    width: 38.484230125953%;
+    height: 5.622197137072%;
+  }
+}
+
+/* Painel mobile fixo: a lista do dia 06 tem 2.06% a mais de altura. */
+@media (max-width: 640px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-slides {
+    position: relative;
+    aspect-ratio: 1847.51 / 2276.69;
+    clip-path: inset(0 0 -3% 0);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) .lineup-section__mobile-content[hidden] {
+    display: none;
+  }
+}

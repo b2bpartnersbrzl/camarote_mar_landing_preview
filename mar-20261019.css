@@ -1,0 +1,171 @@
+/* Edição local de 19/10/2026. Preserva as artes e interações das seções mantidas. */
+:root{--mar-cream:#fcf4dc;--mar-header:76px}
+html{scroll-padding-top:var(--mar-header)}
+body.mar-2027{color:#fff;overflow-x:clip}
+.mar-2027 .countdown-dock{display:none}
+body.mar-2027 main>section{order:initial!important;scroll-margin-top:0}
+.mar-header{height:var(--mar-header);position:fixed;inset:0 0 auto;z-index:120;display:flex;align-items:center;gap:24px;padding:0 3.5%;background:rgba(1,31,38,.47);color:var(--mar-cream)}
+.mar-header::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(rgba(1,31,38,.47),rgba(1,31,38,.47)),url("assets/bg-lineup-desktop.jpg") center center / cover fixed}
+.mar-logo{display:flex;flex-shrink:0;align-items:center;margin-right:auto}
+.mar-logo img{display:block;width:108px;height:auto;max-height:42px}
+.mar-menu{display:flex;align-items:center;gap:clamp(12px,1.3vw,25px)}
+.mar-menu a{font-size:13px;font-weight:600;text-decoration:none;color:var(--mar-cream);white-space:nowrap}
+.mar-menu a:hover{text-decoration:underline;text-underline-offset:6px}
+.mar-button{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 24px;border:1px solid var(--mar-cream);border-radius:40px;background:var(--mar-cream);color:#08282d;text-decoration:none;font-size:12px;line-height:1.25;font-weight:800;letter-spacing:.015em;text-align:center}
+.mar-button--outline{background:transparent;color:var(--mar-cream)}
+.mar-2027 .faq-preview__link:hover{background:transparent;color:#fff}
+.mar-header-ticket{min-height:38px;padding:9px 20px;font-size:12px;white-space:nowrap}
+.mar-languages{display:flex;gap:9px;align-items:center}
+.mar-language{display:grid;place-items:center;width:28px;height:40px}
+.mar-language img{display:block;object-fit:cover;width:24px;height:24px;border-radius:100%;border:1px solid #fff8}
+.mar-menu-toggle{display:none}
+.mar-2027 :is(a,button):focus-visible{outline:2px solid var(--mar-cream);outline-offset:5px}
+.mar-hero{height:100svh;min-height:540px;position:relative;padding-top:var(--mar-header);overflow:hidden}
+.mar-hero-video{position:absolute;top:var(--mar-header);left:0;width:100%;height:calc(100% - var(--mar-header));object-fit:cover;background:#03171b}
+.mar-hero-shade{position:absolute;inset:var(--mar-header) 0 0;background:linear-gradient(180deg,rgba(0,0,0,.25),transparent 40%,rgba(0,0,0,.45))}
+.mar-dates{position:absolute;top:calc(var(--mar-header) + 42px);right:4.5%;color:#fff;line-height:1.04;text-align:right;text-shadow:0 2px 18px #0008}
+.mar-dates span{font-weight:800;font-size:clamp(38px,2.92vw,56px);letter-spacing:-.04em}
+.mar-dates small{display:block;font-size:clamp(23px,2.9vw,56px);font-weight:400;line-height:1.15;margin-top:8px;letter-spacing:-.04em}
+.mar-dates em{font-family:"Neue Montreal Web LightItalic",Arial,sans-serif;font-style:normal;font-weight:400}
+.mar-hero-bottom{position:absolute;bottom:46px;left:0;width:100%;display:flex;justify-content:center;align-items:center}
+.mar-hero-bottom .mar-button{padding:9px 22px;font-size:clamp(16px,1.35vw,26px);font-weight:600;min-height:52px;box-shadow:0 4px 20px #0006;background:#011f26;color:var(--mar-cream)}
+
+.mar-panel{position:relative;isolation:isolate;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:4.5%;min-height:min(820px,calc(100svh - var(--mar-header)));padding:4.5% 7.5%;color:#fff}
+.mar-copy{position:relative;z-index:2;max-width:600px;font-size:clamp(15px,1.3vw,21px);line-height:1.45}
+.mar-copy .mar-eyebrow{font-size:clamp(10px,.8vw,13px);line-height:1.6;margin:0 0 24px;text-transform:uppercase}
+.mar-copy :is(h1,h2){font-size:clamp(24px,2.25vw,37px);line-height:1.15;letter-spacing:-.035em;font-weight:400;margin:0 0 22px;text-transform:none}
+.mar-copy :is(h1,h2) strong{font-weight:800}
+.mar-copy p{margin:0 0 20px}
+.mar-copy .mar-intro{font-size:1.1em}
+.mar-copy strong{font-weight:800}
+.mar-copy em{font-style:italic}
+.mar-about-actions{display:flex;align-items:center;gap:20px}
+.mar-about-actions p{margin:0;font-weight:800}
+.mar-about-actions .mar-button{flex-shrink:0}
+.mar-facts{list-style:none;margin:22px 0;padding:0}
+.mar-facts li{margin:0;line-height:1.45}
+.mar-copy address{font-style:normal;font-size:.85em;line-height:1.6;margin:26px 0}
+.mar-drone{position:relative;display:block;width:100%;aspect-ratio:1.13;border:0;padding:0;background:transparent;cursor:pointer;overflow:hidden}
+.mar-drone img{width:100%;height:100%;object-fit:cover;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,black 66%,transparent 100%)}
+.mar-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;background:#fff;color:#00272f;width:68px;height:68px;border-radius:50%;padding-left:5px;font-size:24px;box-shadow:0 0 36px #fff4}
+.mar-drone:hover .mar-play{transform:translate(-50%,-50%) scale(1.08)}
+.mar-meeting{grid-template-columns:.9fr 1.2fr;padding-right:4%;gap:1%}
+.mar-meeting-photo{display:block;width:110%;max-width:none;margin-left:-5%;height:100%;max-height:630px;object-fit:cover;mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,black 66%,transparent 100%)}
+.mar-hotel{grid-template-columns:1fr 1fr;gap:12%;min-height:650px;aspect-ratio:16/9;padding:8%}
+.mar-hotel-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.mar-hotel-shade{position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0001 15%,#1e0a0050 45%,#0d0506b5 100%)}
+.mar-hotel-logo{position:relative;width:90%;height:auto;filter:drop-shadow(0 2px 12px #0004)}
+.mar-hotel .mar-copy{text-align:right}
+.mar-hotel-actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+.mar-hotel-actions .mar-button{font-size:11px;padding:12px 20px}
+.mar-hotel-actions .mar-button{background:transparent;color:var(--mar-cream)}
+.mar-video-dialog{width:min(1200px,94vw);max-width:94vw;padding:0;border:0;background:#000;overflow:visible}
+.mar-video-dialog::backdrop{background:#000e}
+.mar-video-dialog video{width:100%;max-height:85svh;display:block}
+.mar-dialog-close{position:absolute;right:0;top:-44px;width:40px;height:40px;color:#fff;border:0;background:transparent;font-size:36px;cursor:pointer}
+.mar-form-language-note{color:var(--mar-cream);font-size:13px;max-width:580px;margin:0 auto 20px;text-align:center}
+.mar-inner-page{padding-top:var(--mar-header)}
+.mar-map-mobile-copy{display:none}
+.mar-2027 .desktop-section-nav{z-index:110}
+.mar-2027 .site-whatsapp{z-index:110}
+.mar-2027 .faq-preview{margin-top:0}
+/* Barra desktop conforme a imagem do cliente. Item 2.7 desconsiderado em 20/10. */
+@media(min-width:901px){
+ :root{--mar-header:clamp(62.4px,7.22vw,138.6px)}
+ body.mar-2027 main>#lineup{scroll-margin-top:var(--mar-lineup-anchor-offset,0px)}
+ .mar-header{gap:clamp(14px,1.45vw,28px);padding:0 2.4% 0 3.3%}
+ .mar-logo img{width:clamp(75px,8.34vw,160px);max-height:none}
+ .mar-menu{gap:0}
+ .mar-menu a{position:relative;font-family:"Neue Montreal Web MediumItalic",Arial,sans-serif;font-weight:400;font-style:normal;font-synthesis:none;font-size:clamp(12px,1.33vw,25.5px);line-height:1.2;text-transform:uppercase}
+ .mar-menu a+a{margin-left:.7em}
+ .mar-menu a+a::before{content:"|";position:absolute;right:calc(100% + .2em);top:50%;transform:translateY(-50%);pointer-events:none}
+ .mar-header-ticket{display:none}
+ .mar-languages{gap:clamp(8px,.6vw,12px)}
+ .mar-language{width:clamp(22px,2.5vw,48px);height:clamp(22px,2.5vw,48px)}
+ .mar-language img{width:100%;height:100%;border:2px solid #fff}
+}
+@media(max-width:1100px){
+ .mar-panel{padding:8% 6%;min-height:660px}.mar-copy{font-size:16px}.mar-hotel{gap:7%}
+ .mar-about-actions{flex-wrap:wrap;gap:14px}
+}
+@media(max-width:900px){
+ :root{--mar-header:68px}.mar-header{gap:16px}.mar-logo img{width:86px}.mar-menu-toggle{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:36px;height:44px;border:0;background:transparent;padding:4px;cursor:pointer}.mar-menu-toggle span{display:block;width:23px;height:2px;background:var(--mar-cream)}
+ .mar-menu{position:absolute;top:var(--mar-header);right:0;left:0;padding:24px 7%;background:#011f26;flex-direction:column;align-items:stretch;gap:0;display:none;border-top:1px solid #fcf4dc20;max-height:calc(100svh - var(--mar-header));overflow:auto}
+ .mar-menu.is-open{display:flex}.mar-menu a{font-size:17px;padding:14px 0}.mar-header-ticket{margin-left:auto;min-height:40px}.mar-languages{gap:7px}
+ .mar-hero{min-height:520px}.mar-dates{right:6%;top:calc(var(--mar-header) + 30px)}
+ .mar-panel{gap:5%;padding:70px 7%;min-height:unset}.mar-copy{font-size:16px}.mar-copy :is(h1,h2){font-size:26px}.mar-hotel{min-height:600px;aspect-ratio:auto}.mar-hotel-actions{flex-direction:column;align-items:stretch}
+}
+@media(max-width:640px){
+ :root{--mar-header:64px}.mar-header{gap:9px;padding:0 16px}.mar-logo img{width:70px}.mar-header-ticket{font-size:10px;min-height:36px;padding:9px 13px}.mar-languages{gap:3px}.mar-language{height:44px;width:24px}.mar-language img{width:21px;height:21px}.mar-menu-toggle{width:28px;margin-left:2px}
+ .mar-hero{height:100svh;min-height:600px}.mar-dates{top:calc(var(--mar-header) + 30px);right:24px}.mar-dates span{font-size:38px}.mar-dates small{font-size:17px}.mar-hero-bottom{bottom:94px}.mar-hero-bottom .mar-button{font-size:12px;padding:14px 24px}
+ .mar-panel{display:flex;flex-direction:column;gap:28px;padding:64px 26px 32px;min-height:0;aspect-ratio:auto}
+ .mar-copy{width:100%;max-width:none;font-size:16px;line-height:1.5}.mar-copy :is(h1,h2){font-size:28px;line-height:1.12;letter-spacing:-.025em;margin-bottom:20px}.mar-copy .mar-eyebrow{font-size:10px;margin-bottom:22px}.mar-copy p{margin-bottom:20px}.mar-facts{margin:24px 0}.mar-facts li{line-height:1.5}.mar-copy address{font-size:13px}
+ .mar-button{min-height:46px;padding:12px 21px}.mar-drone{aspect-ratio:4/3;width:calc(100% + 32px);margin:-4px -16px 0}.mar-drone img{mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,black 50%,transparent 100%)}.mar-play{width:56px;height:56px;font-size:20px}
+ .mar-meeting-photo{margin:-12px -20px 0;width:calc(100% + 40px);height:auto;max-height:none;aspect-ratio:1.15;mask-image:radial-gradient(ellipse 70% 65% at 50% 50%,black 50%,transparent 100%)}
+ .mar-hotel{position:relative;padding:60px 26px 0;gap:25px;overflow:hidden}.mar-hotel-photo{position:relative;order:3;inset:auto;width:calc(100% + 52px);max-width:none;height:auto;aspect-ratio:1.2;object-fit:cover;object-position:30% 50%;margin:0 -26px;z-index:0;mask-image:linear-gradient(transparent,black 12%)}.mar-hotel-shade{display:none}.mar-hotel .mar-copy{text-align:left;order:1}.mar-hotel-logo{order:2;width:220px;align-self:flex-start}.mar-hotel-actions{align-items:flex-start;gap:12px}.mar-hotel-actions .mar-button{min-width:240px}.mar-hotel .mar-eyebrow{margin-bottom:20px}
+ .mar-2027 .site-whatsapp{right:15px!important;bottom:20px!important;width:44px!important;height:44px!important}.mar-2027 .desktop-section-nav{display:flex;right:15px;top:auto;bottom:83px;transform:none;width:32px;padding:2px;border-radius:22px}.mar-2027 .desktop-section-nav__button{width:27px;height:29px}.mar-2027 .desktop-section-nav__button::before{width:6px;height:6px}
+ .mar-form-language-note{padding:0 24px;margin-bottom:28px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.mar-button,.mar-play{transition:none}}
+@supports(mask-composite:intersect){
+ .mar-meeting-photo,.mar-drone img{mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 86%,transparent);mask-composite:intersect}
+}
+/* Enquadramento das novas seções conforme as referências do cliente. */
+@media(min-width:901px){
+ .mar-panel{min-height:calc(100svh - var(--mar-header));padding:32px 3.8%;grid-template-columns:46% 54%;gap:0}
+ .mar-copy{max-width:none;font-size:clamp(16px,1.24vw,24px);line-height:1.25}
+ .mar-copy .mar-eyebrow{font-size:clamp(11px,.99vw,19px);line-height:1.3;margin-bottom:26px}
+ .mar-copy :is(h1,h2){font-size:clamp(24px,1.72vw,33px);line-height:1.18;letter-spacing:-.025em;margin-bottom:24px}
+ .mar-copy p{margin-bottom:24px}
+ .mar-copy .mar-intro{font-size:1em}
+ .mar-facts{margin:24px 0}.mar-facts li{line-height:1.25}
+ .mar-copy address{font-size:1em;line-height:1.25;margin:30px 0}
+ .mar-panel .mar-button{font-size:clamp(13px,1.04vw,20px);font-weight:400;padding:8px 16px;min-height:44px;border-color:#fff;color:#fff}
+ .mar-about-actions{flex-wrap:nowrap;gap:20px}.mar-about-actions p{margin:0}
+ .mar-about .mar-copy{padding-right:24px}
+ .mar-drone{height:calc(100svh - var(--mar-header) - 64px);min-height:440px;aspect-ratio:auto}
+ .mar-meeting{grid-template-columns:40% 60%;padding-right:3.8%}
+ .mar-meeting .mar-copy{position:relative;z-index:2}
+ .mar-meeting-photo{height:calc(100svh - var(--mar-header) - 64px);min-height:440px;max-height:none}
+ .mar-hotel{grid-template-columns:55% 45%;gap:0;aspect-ratio:auto;padding:40px 5.8%;padding-right:max(5.8%,78px)}
+ .mar-hotel-logo{width:62%;max-width:500px;justify-self:center}
+ .mar-hotel .mar-copy{padding-left:20px}
+ .mar-hotel-actions{flex-wrap:nowrap;gap:12px}
+ .mar-hotel-actions .mar-button{font-size:clamp(12px,.9vw,17px);padding:9px 14px;flex-shrink:0}
+ .mar-dates{right:2.6%;top:calc(var(--mar-header) + 32px)}
+ .mar-hero-bottom{bottom:7.2%}
+}
+@media(min-width:901px) and (max-width:1100px){
+ .mar-about-actions{gap:12px;flex-wrap:wrap}
+ .mar-hotel-actions{flex-wrap:wrap}
+}
+@media(max-width:640px){
+ .mar-header::before{background-image:linear-gradient(rgba(1,31,38,.47),rgba(1,31,38,.47)),url("assets/bg-lineup-mobile.jpg")}
+ .mar-2027 .faq-preview__content{width:calc(100% - 94px);margin-left:24px;margin-right:70px}
+ .mar-2027 #after-othon{display:flex;flex-direction:column;aspect-ratio:auto;min-height:0;overflow:hidden}
+ .mar-2027 #after-othon::before{display:none}
+ .mar-2027 #after-othon :is(.after-othon-section__art,.after-othon-section__mobile-art){display:none!important}
+ .mar-2027 #after-othon .after-othon-section__map{position:relative;inset:auto;width:100%;height:620px;max-width:none;transform:none;object-fit:contain;opacity:1;order:2}
+ .mar-map-mobile-copy{display:block;order:1;padding:64px 70px 28px 26px;font-size:16px;line-height:1.5;color:#fff}
+ .mar-map-mobile-copy p{margin:0 0 22px}
+ .mar-map-mobile-copy h2{font-size:28px;line-height:1.12;font-weight:400;font-style:italic;margin:0 0 24px}
+ .mar-about-actions{align-items:flex-start;flex-direction:column;gap:16px}
+ .mar-about-actions p{margin:0}
+ .mar-copy{padding-right:44px}
+ .mar-hotel-actions .mar-button{min-width:min(240px,100%);max-width:100%}
+ .mar-2027 .footer{padding-left:24px;padding-right:70px}
+ .mar-2027 .footer__row{width:100%}
+ .mar-2027 .footer .social{width:100%}
+ .mar-2027 .footer .social a{width:44px;height:44px;flex-shrink:0}
+ .mar-menu-toggle{position:relative}
+ .mar-menu-toggle::after{content:"";position:absolute;inset:0 -8px}
+ .lineup-section__mobile-control::after{content:"";position:absolute;inset:-12px 0}
+}
+/* Retirado do topo mobile conforme orientação de 21/10/2026. */
+@media(max-width:900px){
+ .mar-header-ticket{display:none}
+}
+@media(max-width:360px){
+ .mar-hero-bottom{padding-right:45px}
+ .mar-hero-bottom .mar-button{padding-left:15px;padding-right:15px;font-size:11px}
+}

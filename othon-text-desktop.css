@@ -1,0 +1,46 @@
+/* Texto selecionável em Neue Montreal, nas coordenadas da arte aprovada.
+   O logotipo permanece vetorial. A substituição vale apenas para PT desktop. */
+.othon__desktop-copy {
+  display: none;
+}
+
+@media (min-width: 821px) {
+  html[data-language="pt-BR"] .othon-section > picture {
+    display: none;
+  }
+
+  html[data-language="pt-BR"] .othon__desktop-copy {
+    display: block;
+    flex: none;
+    width: 76.5625%;
+    height: auto;
+    overflow: visible;
+    fill: #fff;
+    font-family: "Neue Montreal", Arial, sans-serif;
+    font-weight: 400;
+    opacity: 0;
+    user-select: text;
+  }
+
+  .othon__headline { font-size: 28.524px; }
+  .othon__body { font-size: 29.559px; }
+  .othon__details { font-size: 22.998px; }
+  .othon__address { font-size: 16.913px; }
+  .othon__emphasis { font-weight: 800; }
+  .othon__italic { font-style: italic; }
+
+  .othon-section.is-art-visible .othon__desktop-copy {
+    animation: heroSvgFade 1008ms ease-in-out both;
+  }
+
+  .othon-section.is-art-hiding .othon__desktop-copy {
+    animation: heroSvgFadeOut 364ms ease-in-out both;
+  }
+}
+
+@media (min-width: 821px) and (prefers-reduced-motion: reduce) {
+  html[data-language="pt-BR"] .othon__desktop-copy {
+    animation: none;
+    opacity: 1;
+  }
+}

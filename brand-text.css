@@ -1,0 +1,4 @@
+/* Use the existing Neue Montreal Bold face for the complete brand name. */
+strong.brand-name {
+  font-weight: 800;
+}

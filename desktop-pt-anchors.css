@@ -1,0 +1,66 @@
+/* Enquadramento local do desktop PT/EN. O conteúdo original continua na seção. */
+@media (min-width: 821px) {
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] {
+    scroll-snap-type: y mandatory;
+  }
+
+  html[data-desktop-anchors] .desktop-anchor-frame {
+    position: relative;
+    flex: none;
+    width: 100%;
+    height: 100svh;
+    overflow: clip;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  html[data-desktop-anchors] main > .hero {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  html[data-desktop-anchors] body > .footer {
+    scroll-snap-align: end;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .desktop-anchor-frame > section,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .desktop-anchor-frame > section.is-bg-ready {
+    background: transparent;
+  }
+
+  html[data-desktop-anchors] .desktop-anchor-frame > section {
+    position: absolute;
+    inset: 0 auto auto 0;
+    margin: 0;
+    transform-origin: 0 0;
+  }
+
+  /* O lineup possuía regras que exigiam ser filho direto de main. */
+  html[data-desktop-anchors] .desktop-anchor-frame > .lineup-section {
+    display: block;
+    aspect-ratio: 3480 / 2160;
+    overflow: hidden;
+  }
+
+  /* Aproxima as laterais e acomoda a data sem mudar a escala da composição. */
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] .lineup-section__art--lateral-esquerda {
+    transform: translate(0, -6%);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] .lineup-section__art--lateral-direita {
+    transform: translate(0, 6%);
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] .lineup-section__art--datas {
+    transform: translateY(-1.5%);
+  }
+
+  /* O mapa pode avançar sob o menu, mantendo seu tamanho e o texto à esquerda. */
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] .after-othon-section {
+    overflow: visible;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"])[data-desktop-anchors] .after-othon-section__map {
+    top: -12%;
+  }
+}

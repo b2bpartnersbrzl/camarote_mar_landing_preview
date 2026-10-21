@@ -1,0 +1,28 @@
+/* Teste local: um único BG do lineup, fixo atrás das seções do desktop PT/EN.
+   Reversão: remover este stylesheet e a classe do body em site.html. */
+@media (min-width: 641px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg {
+    isolation: isolate;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: #000 url("assets/bg-lineup-desktop.jpg") center center / cover no-repeat;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg main > section,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg main > section.is-bg-ready,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg > .footer {
+    background: transparent;
+  }
+
+  /* Retira apenas as camadas de fundo próprias das seções. */
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .signup::before,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .countdown-section::after {
+    background: none;
+  }
+}

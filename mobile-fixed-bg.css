@@ -1,0 +1,28 @@
+/* Fundo único da seção 02 no mobile PT/EN. Não altera o layout ou a navegação. */
+@media (max-width: 640px) {
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg {
+    isolation: isolate;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: #000 url("assets/bg-lineup-mobile.jpg") center center / cover no-repeat;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg main > section,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg main > section.is-bg-ready,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg > .footer {
+    background: transparent;
+  }
+
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .hero::before,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .post-video-section::before,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .signup::before,
+  html:is([data-language="pt-BR"], [data-language="en"]) body.desktop-pt-fixed-bg .countdown-section::after {
+    background: none;
+  }
+}

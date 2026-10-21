@@ -1,0 +1,22 @@
+/* FAQ no menu apenas no desktop; mantém as dimensões naturais do SVG. */
+.top-menu__socials > .top-menu__faq {
+  display: none;
+}
+
+@media (min-width: 821px) {
+  .top-menu__socials > .top-menu__faq {
+    display: flex;
+  }
+
+  .top-menu__socials > .top-menu__faq :is(img, :where(svg[data-text-art])) {
+    /* Compensa a cauda do Q para centralizar visualmente as letras. */
+    transform: scale(0.6) translateY(4%);
+    opacity: 0.76;
+    transition: opacity 160ms ease;
+  }
+
+  .top-menu__socials > .top-menu__faq:hover :is(img, :where(svg[data-text-art])),
+  .top-menu__socials > .top-menu__faq:focus-visible :is(img, :where(svg[data-text-art])) {
+    opacity: 1;
+  }
+}

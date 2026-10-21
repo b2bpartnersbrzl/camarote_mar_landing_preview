@@ -1,0 +1,65 @@
+/* Reconstrução local da seção 3, somente em português no desktop. */
+@font-face {
+  font-family: "Neue Montreal Numbers";
+  src: url("assets/fonts/NeueMontreal-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal Numbers";
+  src: url("assets/fonts/NeueMontreal-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal Numbers";
+  src: url("assets/fonts/NeueMontreal-Italic.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal Numbers";
+  src: url("assets/fonts/NeueMontreal-MediumItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Neue Montreal Numbers";
+  src: url("assets/fonts/NeueMontreal-LightItalic.woff") format("woff");
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+}
+.post-hero-section__numbers-copy { display: none; }
+
+@media (min-width: 821px) {
+  html[data-language="pt-BR"] .post-hero-section__composition > picture { display: none; }
+  html[data-language="pt-BR"] .post-hero-section__numbers-copy {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 80.8%;
+    height: auto;
+    transform: translateY(-50%);
+    opacity: 0;
+    overflow: visible;
+    fill: #fff;
+    font-family: "Neue Montreal Numbers", Arial, sans-serif;
+    font-synthesis: none;
+    user-select: text;
+  }
+  .post-hero-section.is-art-visible .post-hero-section__numbers-copy {
+    animation: heroSvgFade 1008ms ease-in-out both;
+  }
+  .post-hero-section.is-art-hiding .post-hero-section__numbers-copy {
+    animation: heroSvgFadeOut 364ms ease-in-out both;
+  }
+}
+@media (min-width: 821px) and (prefers-reduced-motion: reduce) {
+  html[data-language="pt-BR"] .post-hero-section__numbers-copy { animation: none; opacity: 1; }
+}
