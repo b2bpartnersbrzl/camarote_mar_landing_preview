@@ -76,7 +76,7 @@ body.mar-2027 main>section{order:initial!important;scroll-margin-top:0}
  .mar-header{gap:clamp(14px,1.45vw,28px);padding:0 2.4% 0 3.3%}
  .mar-logo img{width:clamp(75px,8.34vw,160px);max-height:none}
  .mar-menu{gap:0}
- .mar-menu a{position:relative;font-family:"Neue Montreal Web MediumItalic",Arial,sans-serif;font-weight:400;font-style:normal;font-synthesis:none;font-size:clamp(12px,1.33vw,25.5px);line-height:1.2;text-transform:uppercase}
+ .mar-menu a{position:relative;font-family:"Neue Montreal Web Medium",Arial,sans-serif;font-weight:400;font-style:normal;font-synthesis:none;font-size:clamp(12px,1.33vw,25.5px);line-height:1.2;text-transform:uppercase}
  .mar-menu a+a{margin-left:.7em}
  .mar-menu a+a::before{content:"|";position:absolute;right:calc(100% + .2em);top:50%;transform:translateY(-50%);pointer-events:none}
  .mar-header-ticket{display:none}
