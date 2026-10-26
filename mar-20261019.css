@@ -203,16 +203,24 @@ body.mar-2027 main>section{order:initial!important;scroll-margin-top:0}
   .mar-2027 .mar-map-mobile-copy h2 { font-size: 25.76px; }
 }
 
-/* Revelação suave dos textos solicitados. O conteúdo continua legível sem JavaScript. */
-html.mar-animations-ready .mar-2027 [data-mar-reveal] {
+/* Logo Othon: fade-in separado; os textos seguem a rolagem. */
+html.mar-animations-ready .mar-2027 [data-mar-reveal="fade"] {
   opacity: 0;
-  transform: translate3d(0, 18px, 0);
-  transition: opacity 760ms cubic-bezier(.22,.61,.36,1), transform 760ms cubic-bezier(.22,.61,.36,1);
+  transition: opacity 760ms cubic-bezier(.22,.61,.36,1);
 }
-html.mar-animations-ready .mar-2027 [data-mar-reveal="fade"] { transform: none; }
-html.mar-animations-ready .mar-2027 [data-mar-reveal].is-visible { opacity: 1; transform: none; }
+html.mar-animations-ready .mar-2027 [data-mar-reveal="fade"].is-visible { opacity: 1; }
+html.mar-scroll-reveal .mar-2027 [data-mar-slide] {
+  translate: var(--mar-text-x, 0px) 0;
+}
+/* Neutraliza a animação antiga da arte textual, mantendo sua posição vertical. */
+html.mar-scroll-reveal .mar-2027 #after-othon :is(.after-othon-section__art,.after-othon-section__mobile-art) {
+  animation: none;
+  opacity: 1;
+  translate: var(--mar-location-text-x, 0px) 0;
+}
 @media (prefers-reduced-motion: reduce) {
-  html.mar-animations-ready .mar-2027 [data-mar-reveal] { opacity: 1; transform: none; transition: none; }
+  html.mar-animations-ready .mar-2027 [data-mar-reveal="fade"] { opacity: 1; transition: none; }
+  html.mar-scroll-reveal .mar-2027 [data-mar-slide] { translate: none; }
 }
 
 /* Vídeos decorativos mantêm o recorte das fotos que substituem. */
@@ -255,22 +263,7 @@ html.mar-animations-ready .mar-2027 [data-mar-reveal].is-visible { opacity: 1; t
     transform-origin: left center;
     transform: scale(.92);
   }
-  .mar-2027 #after-othon.is-art-visible:not(.is-art-hiding) .after-othon-section__art {
-    animation: marLocationTextReveal 760ms cubic-bezier(.22,.61,.36,1) both;
-  }
 }
-@keyframes marLocationTextReveal {
-  from { opacity: 0; transform: translate3d(0, calc(-50% + 18px), 0); }
-  to { opacity: 1; transform: translate3d(0, -50%, 0); }
-}
-@media (min-width: 901px) and (prefers-reduced-motion: reduce) {
-  .mar-2027 #after-othon.is-art-visible:not(.is-art-hiding) .after-othon-section__art {
-    animation: none;
-    opacity: 1;
-    transform: translate3d(0, -50%, 0);
-  }
-}
-
 /* Programação mobile: texto em tamanho legível, sem reduzir a lista com a arte. */
 .mar-mobile-lineup-copy, .mar-mobile-lineup-heading { display: none; }
 @media (max-width: 640px) {
@@ -311,4 +304,29 @@ html.mar-animations-ready .mar-2027 [data-mar-reveal].is-visible { opacity: 1; t
   body.mar-2027 #lineup .lineup-section__mobile-control--next { grid-column: 3; }
   body.mar-2027 #lineup .lineup-section__art--lateral-direita { top: 22px; height: 155px; right: 8px; }
   body.mar-2027 #lineup .lineup-section__art--lateral-esquerda { bottom: 64px; height: 155px; left: 8px; }
+}
+
+/* Sequência mobile solicitada em 26/10: apresentação, mídia, texto e CTA. */
+/* A entrada pela direita do Hotel permanece contida na largura da seção. */
+.mar-2027 #hotel-oficial { overflow-x: clip; }
+@media (max-width: 640px) {
+  .mar-2027 #conheca-o-mar .mar-copy > .mar-drone {
+    width: calc(100% + 76px);
+    margin: 0 -16px 24px;
+  }
+  .mar-2027 #hotel-oficial { padding-bottom: 32px; }
+  .mar-2027 #hotel-oficial .mar-hotel-logo { order: 0; }
+  .mar-2027 #hotel-oficial .mar-copy > .mar-hotel-photo {
+    width: calc(100% + 96px);
+    margin: 0 -26px 24px;
+  }
+  .mar-2027 #meeting-point .mar-copy > .mar-meeting-photo {
+    width: calc(100% + 84px);
+    margin: 0 -20px 24px;
+  }
+  .mar-2027 #after-othon .mar-map-mobile-copy > .after-othon-section__map {
+    display: block;
+    width: calc(100% + 96px);
+    margin: 0 -26px 24px;
+  }
 }

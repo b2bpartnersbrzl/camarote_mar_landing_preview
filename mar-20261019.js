@@ -72,6 +72,26 @@
  }
 
 
+ // No mobile, a mídia fica entre a apresentação e o texto complementar.
+ // Reutiliza os mesmos elementos e restaura sua posição original no desktop.
+ const mobileMediaPlacements=[
+  ['#conheca-o-mar .mar-drone','#conheca-o-mar .mar-intro'],
+  ['#hotel-oficial .mar-hotel-photo','#mar-hotel-title'],
+  ['#meeting-point .mar-meeting-photo','#mar-meeting-title + p'],
+  ['#after-othon .after-othon-section__map','#after-othon .mar-map-mobile-copy h2']
+ ].map(([mediaSelector,anchorSelector])=>{
+  const media=document.querySelector(mediaSelector),after=document.querySelector(anchorSelector);
+  if(!media||!after)return null;
+  const originalPosition=document.createComment('Posição da mídia no desktop');
+  media.before(originalPosition);
+  return {media,after,originalPosition};
+ }).filter(Boolean);
+ const syncMobileMediaOrder=()=>mobileMediaPlacements.forEach(({media,after,originalPosition})=>{
+  const anchor=mobile.matches?after:originalPosition;
+  if(anchor.nextSibling!==media)anchor.after(media);
+ });
+ syncMobileMediaOrder();mobile.addEventListener('change',syncMobileMediaOrder);
+
  // Ajustes finais do cliente, edição local de 26/10/2026.
  const sectionVideos=Array.from(document.querySelectorAll('video.mar-autoplay-video[data-mar-video]'));
  const startSectionVideo=video=>{
@@ -87,15 +107,71 @@
   sectionVideos.forEach(video=>sectionVideoObserver.observe(video));
  }else sectionVideos.forEach(startSectionVideo);
 
- const revealTargets=Array.from(document.querySelectorAll('[data-mar-reveal]'));
- document.documentElement.classList.add('mar-animations-ready');
+ // Entrada lateral vinculada à rolagem, como a referência do cliente.
+ // Hotel entra pela direita (+50%); os demais textos, pela esquerda (-50%).
+ const textMotionGroups=Array.from(document.querySelectorAll('[data-mar-reveal]:not([data-mar-reveal="fade"])')).map(copy=>{
+  const targets=Array.from(copy.children).filter(child=>!child.matches('video,.mar-drone'));
+  targets.forEach(target=>target.setAttribute('data-mar-slide',''));
+  return {section:copy.closest('section'),widthElement:copy,styleElement:copy};
+ });
+ const locationArts=Array.from(document.querySelectorAll('#after-othon .after-othon-section__art,#after-othon .after-othon-section__mobile-art'));
+ locationArts.forEach(art=>art.setAttribute('data-mar-slide',''));
+ if(locationArts.length){
+  const section=locationArts[0].closest('section');
+  // Guarda o deslocamento na seção para preservar a sincronização das artes de idioma.
+  textMotionGroups.push({section,widthElements:locationArts,styleElement:section,property:'--mar-location-text-x'});
+ }
+ const motionStates=textMotionGroups.map(group=>({...group,current:0,from:0,goal:0,started:0,width:0}));
+ let motionFrame=0;
+ const clampProgress=value=>Math.max(0,Math.min(1,value));
+ const paintMotion=state=>{
+  // Curva de saída suave; o ponto final é exatamente a composição existente.
+  const remaining=(1-state.current)**2;
+  const direction=state.section.id==='hotel-oficial'?1:-1;
+  state.styleElement.style.setProperty(state.property||'--mar-text-x',`${(direction*.5*state.width*remaining).toFixed(3)}px`);
+ };
+ const animateTextMotion=now=>{
+  motionFrame=0;let pending=false;
+  motionStates.forEach(state=>{
+   const elapsed=clampProgress((now-state.started)/2000);
+   state.current=reduced.matches?1:state.from+(state.goal-state.from)*(1-(1-elapsed)**3);
+   if(elapsed===1)state.current=state.goal;
+   paintMotion(state);
+   if(Math.abs(state.current-state.goal)>.00001)pending=true;
+  });
+  if(pending)motionFrame=requestAnimationFrame(animateTextMotion);
+ };
+ const syncTextMotion=(immediate=false)=>{
+  const now=performance.now();
+  motionStates.forEach(state=>{
+   const rect=state.section.getBoundingClientRect();
+   const goal=reduced.matches?1:clampProgress((innerHeight-rect.top)/Math.max(1,rect.height*.5));
+   state.width=state.widthElements?Math.max(...state.widthElements.map(element=>element.getBoundingClientRect().width)):state.widthElement.getBoundingClientRect().width;
+   if(immediate){state.current=goal;state.from=goal;state.goal=goal;paintMotion(state)}
+   else if(Math.abs(goal-state.goal)>.00001){state.from=state.current;state.goal=goal;state.started=now}
+  });
+  if(!immediate&&!motionFrame)motionFrame=requestAnimationFrame(animateTextMotion);
+ };
+ syncTextMotion(true);
+ document.documentElement.classList.add('mar-animations-ready','mar-scroll-reveal');
+ window.addEventListener('scroll',()=>syncTextMotion(),{passive:true});
+ window.addEventListener('resize',()=>syncTextMotion(true));
+ reduced.addEventListener('change',()=>syncTextMotion(true));
+ document.fonts?.ready.then(()=>syncTextMotion(true));
+ if('ResizeObserver' in window){
+  const motionResizeObserver=new ResizeObserver(()=>syncTextMotion(true));
+  new Set(motionStates.map(state=>state.section)).forEach(section=>motionResizeObserver.observe(section));
+ }
+ // A logo Othon mantém o fade-in separado solicitado no mesmo documento.
+ const fadeTargets=Array.from(document.querySelectorAll('[data-mar-reveal="fade"]'));
  if('IntersectionObserver' in window){
-  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  const fadeObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
    if(!entry.isIntersecting)return;
-   entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);
+   entry.target.classList.add('is-visible');fadeObserver.unobserve(entry.target);
   }),{threshold:.16,rootMargin:'0px 0px -7% 0px'});
-  revealTargets.forEach(target=>revealObserver.observe(target));
- }else revealTargets.forEach(target=>target.classList.add('is-visible'));
+  fadeTargets.forEach(target=>fadeObserver.observe(target));
+ }else fadeTargets.forEach(target=>target.classList.add('is-visible'));
+
 
  const locationSection=document.querySelector('.after-othon-section');
  if(locationSection){
