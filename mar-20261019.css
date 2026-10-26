@@ -173,9 +173,11 @@ body.mar-2027 main>section{order:initial!important;scroll-margin-top:0}
 
 /* Ajustes finais do cliente, edição local de 26/10/2026. */
 @media (min-width: 901px) {
-  .mar-2027 .mar-header { gap: clamp(12px, 1vw, 20px); }
+  .mar-2027 .mar-header { gap: clamp(20px, 2vw, 38px); }
   .mar-2027 .mar-menu a { font-size: clamp(11px, 1.1vw, 21px); }
-  .mar-2027 .mar-menu a + a { margin-left: .48em; }
+  .mar-2027 .mar-menu { gap: clamp(20px, 2.15vw, 42px); }
+  .mar-2027 .mar-menu a + a { margin-left: 0; }
+  .mar-2027 .mar-menu a + a::before { right: calc(100% + clamp(10px, 1.075vw, 21px)); transform: translate(50%, -50%); }
 }
 
 /* O texto da programação sobe em conjunto, mantendo escala e posição do fundo. */

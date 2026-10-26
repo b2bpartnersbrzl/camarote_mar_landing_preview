@@ -49,14 +49,14 @@
  }));
  const hero=document.querySelector('.mar-hero-video');
  const mobile=matchMedia('(max-width:640px)'),reduced=matchMedia('(prefers-reduced-motion:reduce)');
- const loadHero=()=>{if(!hero)return;hero.poster=`assets/cliente-20261019/capa-aftermovie${mobile.matches?'-mobile':''}.jpg`;hero.src='assets/cliente-20261019/hero-20261021.mp4';hero.muted=true;hero.play().catch(()=>{})};
- loadHero();mobile.addEventListener('change',loadHero);
- if(hero)new IntersectionObserver(entries=>{if(!entries[0].isIntersecting)hero.pause();else hero.play().catch(()=>{})},{threshold:.1}).observe(hero);
+ // A mudança de largura atualiza apenas a capa, sem reiniciar o vídeo.
+ const updateHeroPoster=()=>{if(hero)hero.poster=`assets/cliente-20261019/capa-aftermovie${mobile.matches?'-mobile':''}.jpg`};
+ updateHeroPoster();mobile.addEventListener('change',updateHeroPoster);
  const dialog=document.querySelector('.mar-video-dialog'),drone=dialog?.querySelector('video');let videoTrigger;
  function closeVideo(){if(!dialog?.open)return;drone.pause();dialog.close();videoTrigger?.focus()}
- document.querySelector('.mar-drone')?.addEventListener('click',e=>{videoTrigger=e.currentTarget;dialog.showModal();if(!drone.getAttribute('src'))drone.src='assets/cliente-20261019/drone-tour.mp4';drone.play().catch(()=>{})});
+ document.querySelector('.mar-drone')?.addEventListener('click',e=>{videoTrigger=e.currentTarget;dialog.showModal();syncVideoPlayback();if(!drone.getAttribute('src'))drone.src='assets/cliente-20261019/drone-tour.mp4';drone.play().catch(()=>{})});
  dialog?.querySelector('.mar-dialog-close')?.addEventListener('click',closeVideo);
- dialog?.addEventListener('click',e=>{if(e.target===dialog)closeVideo()});dialog?.addEventListener('close',()=>drone.pause());
+ dialog?.addEventListener('click',e=>{if(e.target===dialog)closeVideo()});dialog?.addEventListener('close',()=>{drone.pause();syncVideoPlayback()});
  // All viewports share the same visible-section navigation; capture prevents legacy double scroll.
  const nav=document.querySelector('[data-desktop-section-nav]'),up=nav?.querySelector('[data-section-nav-up]'),down=nav?.querySelector('[data-section-nav-down]');
  const sectionList=()=>Array.from(document.querySelectorAll('main>section,footer.footer')).filter(s=>!s.hidden&&s.offsetHeight>0&&getComputedStyle(s).display!=='none');
@@ -94,18 +94,51 @@
 
  // Ajustes finais do cliente, edição local de 26/10/2026.
  const sectionVideos=Array.from(document.querySelectorAll('video.mar-autoplay-video[data-mar-video]'));
- const startSectionVideo=video=>{
-  if(!video.src){video.src=video.dataset.marVideo;video.load()}
-  video.muted=true;video.loop=true;video.playsInline=true;
-  video.play().catch(()=>{});
+ const autoplayVideos=[hero,...sectionVideos].filter(Boolean);
+ let activeVideo=null,videoFrame=0;
+ const loadVideo=video=>{
+  if(video.getAttribute('src'))return;
+  video.src=video===hero?'assets/cliente-20261019/hero-20261021.mp4':video.dataset.marVideo;
+  video.load();
  };
+ // Reproduz somente o vídeo com maior área visível abaixo da barra fixa.
+ // A fonte e o ponto de reprodução são preservados ao sair e voltar à seção.
+ function syncVideoPlayback(){
+  videoFrame=0;
+  const top=header?.getBoundingClientRect().bottom||0;
+  let selected=null,largestArea=0;
+  if(!document.hidden&&!dialog?.open)autoplayVideos.forEach(video=>{
+   const r=video.getBoundingClientRect();
+   const visibleHeight=Math.max(0,Math.min(r.bottom,innerHeight)-Math.max(r.top,top));
+   const visibleWidth=Math.max(0,Math.min(r.right,innerWidth)-Math.max(r.left,0));
+   const area=visibleHeight*visibleWidth;
+   if(visibleHeight>=Math.min(60,r.height*.15)&&area>largestArea){selected=video;largestArea=area}
+  });
+  activeVideo=selected;
+  autoplayVideos.forEach(video=>{
+   if(video!==selected){video.pause();video.preload='metadata';return}
+   video.preload='auto';loadVideo(video);
+   if(video.paused)video.play().then(()=>{if(activeVideo!==video)video.pause()}).catch(()=>{});
+  });
+ }
+ const scheduleVideoPlayback=()=>{if(!videoFrame)videoFrame=requestAnimationFrame(syncVideoPlayback)};
+ autoplayVideos.forEach(video=>{
+  video.autoplay=false;video.muted=true;video.loop=true;video.playsInline=true;video.preload='metadata';
+  video.addEventListener('loadedmetadata',scheduleVideoPlayback);
+ });
  if('IntersectionObserver' in window){
-  const sectionVideoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-   const video=entry.target;
-   if(entry.isIntersecting)startSectionVideo(video);else video.pause();
-  }),{threshold:.06,rootMargin:'100px 0px'});
-  sectionVideos.forEach(video=>sectionVideoObserver.observe(video));
- }else sectionVideos.forEach(startSectionVideo);
+  const videoPreloadObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(!entry.isIntersecting)return;
+   loadVideo(entry.target);videoPreloadObserver.unobserve(entry.target);
+  }),{rootMargin:'250px 0px'});
+  autoplayVideos.forEach(video=>videoPreloadObserver.observe(video));
+ }
+ window.addEventListener('scroll',scheduleVideoPlayback,{passive:true});
+ window.addEventListener('resize',scheduleVideoPlayback);
+ window.addEventListener('pageshow',scheduleVideoPlayback);
+ document.addEventListener('visibilitychange',syncVideoPlayback);
+ document.fonts?.ready.then(scheduleVideoPlayback);
+ syncVideoPlayback();
 
  // Entrada lateral vinculada à rolagem, como a referência do cliente.
  // Hotel entra pela direita (+50%); os demais textos, pela esquerda (-50%).
