@@ -169,3 +169,146 @@ body.mar-2027 main>section{order:initial!important;scroll-margin-top:0}
  .mar-hero-bottom{padding-right:45px}
  .mar-hero-bottom .mar-button{padding-left:15px;padding-right:15px;font-size:11px}
 }
+
+
+/* Ajustes finais do cliente, edição local de 26/10/2026. */
+@media (min-width: 901px) {
+  .mar-2027 .mar-header { gap: clamp(12px, 1vw, 20px); }
+  .mar-2027 .mar-menu a { font-size: clamp(11px, 1.1vw, 21px); }
+  .mar-2027 .mar-menu a + a { margin-left: .48em; }
+}
+
+/* O texto da programação sobe em conjunto, mantendo escala e posição do fundo. */
+@media (min-width: 641px) {
+  .mar-2027 .lineup-section__composition { transform: scale(.85) translateY(-1.5%); }
+}
+@media (min-width: 641px) {
+  /* Mantém o cabeçalho de Carnaval no lugar e aproxima a programação do topo. */
+  body.mar-2027 #lineup .lineup-section__day { top: 42%; }
+}
+@media (max-width: 640px) {
+  .mar-2027 .lineup-section__composition { transform: translateY(-1.25%); }
+}
+
+/* Tipografia menor nas áreas que o cliente apontou. */
+.mar-2027 #conheca-o-mar .mar-copy,
+.mar-2027 #meeting-point .mar-copy { font-size: clamp(14px, 1.12vw, 18px); }
+.mar-2027 #conheca-o-mar .mar-copy :is(h1,h2),
+.mar-2027 #meeting-point .mar-copy :is(h1,h2) { font-size: clamp(22px, 1.95vw, 31px); }
+@media (max-width: 900px) {
+  .mar-2027 #conheca-o-mar .mar-copy,
+  .mar-2027 #meeting-point .mar-copy { font-size: 15px; }
+  .mar-2027 #conheca-o-mar .mar-copy :is(h1,h2),
+  .mar-2027 #meeting-point .mar-copy :is(h1,h2) { font-size: 25px; }
+  .mar-2027 .mar-map-mobile-copy h2 { font-size: 25.76px; }
+}
+
+/* Revelação suave dos textos solicitados. O conteúdo continua legível sem JavaScript. */
+html.mar-animations-ready .mar-2027 [data-mar-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 760ms cubic-bezier(.22,.61,.36,1), transform 760ms cubic-bezier(.22,.61,.36,1);
+}
+html.mar-animations-ready .mar-2027 [data-mar-reveal="fade"] { transform: none; }
+html.mar-animations-ready .mar-2027 [data-mar-reveal].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html.mar-animations-ready .mar-2027 [data-mar-reveal] { opacity: 1; transform: none; transition: none; }
+}
+
+/* Vídeos decorativos mantêm o recorte das fotos que substituem. */
+.mar-2027 video.mar-meeting-photo,
+.mar-2027 video.mar-hotel-photo,
+.mar-2027 video.after-othon-section__map { background-color: #000; }
+
+/* No celular, o mapa usa a proporção original do vídeo para ocupar a largura sem faixas vazias. */
+@media (max-width: 640px) {
+  .mar-2027 #after-othon .after-othon-section__map {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    /* Afasta a legenda embutida da navegação fixa à direita no celular. */
+    object-position: calc(50% - 44px) center;
+  }
+}
+
+/* Mantém o vídeo da localização na coluna direita, sem cobrir a arte textual. */
+@media (min-width: 901px) {
+  .mar-2027 #after-othon .after-othon-section__map {
+    top: 50%;
+    right: 8%;
+    width: 38%;
+    height: auto;
+    max-width: none;
+    transform: translateY(-50%);
+    object-fit: contain;
+  }
+}
+
+/* Correções da revisão geral desktop, 26/10/2026. */
+@media (min-width: 901px) {
+  /* Texto escuro sobre o preenchimento claro já solicitado pelo cliente. */
+  .mar-2027 #conheca-o-mar .mar-button { color: #08282d; }
+
+  /* Redução de 8%, preservando fonte, pesos, alinhamento e conteúdo do título. */
+  .mar-2027 #after-othon .after-othon-section__art .mar-location-headline {
+    transform-box: fill-box;
+    transform-origin: left center;
+    transform: scale(.92);
+  }
+  .mar-2027 #after-othon.is-art-visible:not(.is-art-hiding) .after-othon-section__art {
+    animation: marLocationTextReveal 760ms cubic-bezier(.22,.61,.36,1) both;
+  }
+}
+@keyframes marLocationTextReveal {
+  from { opacity: 0; transform: translate3d(0, calc(-50% + 18px), 0); }
+  to { opacity: 1; transform: translate3d(0, -50%, 0); }
+}
+@media (min-width: 901px) and (prefers-reduced-motion: reduce) {
+  .mar-2027 #after-othon.is-art-visible:not(.is-art-hiding) .after-othon-section__art {
+    animation: none;
+    opacity: 1;
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+/* Programação mobile: texto em tamanho legível, sem reduzir a lista com a arte. */
+.mar-mobile-lineup-copy, .mar-mobile-lineup-heading { display: none; }
+@media (max-width: 640px) {
+  body.mar-2027 main > #lineup { aspect-ratio: auto; min-height: 0; }
+  body.mar-2027 #lineup .lineup-section__composition {
+    position: relative; inset: auto; padding: 38px 26px 32px; transform: none;
+  }
+  body.mar-2027 #lineup .lineup-section__art--datas,
+  body.mar-2027 #lineup .lineup-section__mobile-content,
+  body.mar-2027 #lineup .lineup-section__mobile-control--cta { display: none !important; }
+  .mar-mobile-lineup-heading { display: block; text-align: center; margin: 0 0 28px; font-size: 12px; line-height: 1.35; }
+  .mar-mobile-lineup-heading strong { display: block; font-size: 15px; }
+  .mar-mobile-lineup-heading span { display: block; }
+  body.mar-2027 #lineup .lineup-section__mobile-day {
+    position: relative; top: auto; left: auto; width: 100%; aspect-ratio: auto; transform: none;
+    display: grid; grid-template-columns: 1fr 44px 44px 1fr; gap: 18px 12px;
+  }
+  body.mar-2027 #lineup .lineup-section__mobile-slides {
+    display: grid; grid-column: 1 / -1; aspect-ratio: auto; clip-path: inset(0);
+  }
+  body.mar-2027 #lineup .lineup-section__mobile-slide { position: relative; inset: auto; grid-area: 1 / 1; min-width: 0; }
+  body.mar-2027 #lineup .lineup-section__mobile-slide[hidden] { display: none; }
+  .mar-mobile-lineup-copy { display: flex; flex-direction: column; color: #fff; font-family: "Neue Montreal Web Regular", Arial, sans-serif; }
+  .mar-mobile-weekday { font-size: 17px; line-height: 1.2; margin: 0 0 8px; min-height: 21px; }
+  .mar-mobile-date { font-size: 46px; line-height: 1.1; margin: 0; padding: 8px 0; border-top: 1px solid #fff; border-bottom: 1px solid #fff; }
+  .mar-mobile-artists { margin-top: 16px; min-height: 88px; text-align: right; }
+  .mar-mobile-artists__row { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 0 .6em; font-size: 20px; line-height: 1.18; }
+  .mar-mobile-artists__row--headline { font-family: "Neue Montreal Web Bold", Arial, sans-serif; font-size: clamp(21px, 6vw, 26px); }
+  .mar-mobile-artists__row--djs { font-size: 18px; }
+  .mar-mobile-ticket { display: inline-flex; align-self: flex-end; align-items: center; justify-content: center; max-width: 100%; min-height: 44px; padding: 10px 20px; border-radius: 40px; background: #fff; color: #070a0d; font-size: 14px; line-height: 1.2; text-decoration: none; text-align: center; }
+  .mar-mobile-parades { margin-top: 26px; min-height: 216px; }
+  .mar-mobile-parades h3 { margin: 0 0 10px; font-family: "Neue Montreal Web Bold", Arial, sans-serif; font-size: 16px; line-height: 1.25; }
+  .mar-mobile-parades ul { list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.45; }
+  .mar-mobile-parades li { margin: 0; padding: 0; }
+  body.mar-2027 #lineup .lineup-section__mobile-control--previous,
+  body.mar-2027 #lineup .lineup-section__mobile-control--next { position: relative; inset: auto; width: 44px; height: 44px; }
+  body.mar-2027 #lineup .lineup-section__mobile-control--previous { grid-column: 2; }
+  body.mar-2027 #lineup .lineup-section__mobile-control--next { grid-column: 3; }
+  body.mar-2027 #lineup .lineup-section__art--lateral-direita { top: 22px; height: 155px; right: 8px; }
+  body.mar-2027 #lineup .lineup-section__art--lateral-esquerda { bottom: 64px; height: 155px; left: 8px; }
+}

@@ -65,7 +65,45 @@
  function navSync(){if(!nav)return;const list=sectionList(),index=sectionIndex(list);up.disabled=index===0;down.disabled=index===list.length-1}
  [[up,-1],[down,1]].forEach(([button,delta])=>button?.addEventListener('click',e=>{e.stopImmediatePropagation();const list=sectionList();let index=sectionIndex(list)+delta;while(list[index]&&Math.abs(sectionScrollTop(list[index])-scrollY)<2)index+=delta;const next=list[index];if(next)next.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'})},true));
  window.addEventListener('scroll',navSync,{passive:true});window.addEventListener('resize',()=>{navSync();if(innerWidth>900)closeMenu()});navSync();
+ // Reaplica o estado mobile depois que a regra de navegação legada muda de faixa.
+ matchMedia('(min-width:821px)').addEventListener('change',navSync);
  if(locale==='es'){
   const script=document.createElement('script');script.src='spanish-preview.js?v=20261019-1';document.body.append(script);
+ }
+
+
+ // Ajustes finais do cliente, edição local de 26/10/2026.
+ const sectionVideos=Array.from(document.querySelectorAll('video.mar-autoplay-video[data-mar-video]'));
+ const startSectionVideo=video=>{
+  if(!video.src){video.src=video.dataset.marVideo;video.load()}
+  video.muted=true;video.loop=true;video.playsInline=true;
+  video.play().catch(()=>{});
+ };
+ if('IntersectionObserver' in window){
+  const sectionVideoObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   const video=entry.target;
+   if(entry.isIntersecting)startSectionVideo(video);else video.pause();
+  }),{threshold:.06,rootMargin:'100px 0px'});
+  sectionVideos.forEach(video=>sectionVideoObserver.observe(video));
+ }else sectionVideos.forEach(startSectionVideo);
+
+ const revealTargets=Array.from(document.querySelectorAll('[data-mar-reveal]'));
+ document.documentElement.classList.add('mar-animations-ready');
+ if('IntersectionObserver' in window){
+  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+   if(!entry.isIntersecting)return;
+   entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target);
+  }),{threshold:.16,rootMargin:'0px 0px -7% 0px'});
+  revealTargets.forEach(target=>revealObserver.observe(target));
+ }else revealTargets.forEach(target=>target.classList.add('is-visible'));
+
+ const locationSection=document.querySelector('.after-othon-section');
+ if(locationSection){
+  const markLocationHeadline=()=>locationSection.querySelectorAll('text[aria-label]').forEach(node=>{
+   if(/AVENIDA DESFILA|PARADE COMES/i.test(node.getAttribute('aria-label')||''))node.classList.add('mar-location-headline');
+  });
+  markLocationHeadline();
+  const locationTextObserver=new MutationObserver(markLocationHeadline);
+  locationTextObserver.observe(locationSection,{subtree:true,childList:true,attributes:true,attributeFilter:['aria-label']});
  }
 })();
