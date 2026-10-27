@@ -97,6 +97,7 @@
  const autoplayVideos=[hero,...sectionVideos].filter(Boolean);
  let activeVideo=null,videoFrame=0;
  const loadVideo=video=>{
+  if(video===hero&&window.MarHeroPreview){window.MarHeroPreview.start();return}
   if(video.getAttribute('src'))return;
   video.src=video===hero?'assets/cliente-20261019/hero-20261021.mp4':video.dataset.marVideo;
   video.load();
@@ -118,6 +119,7 @@
   autoplayVideos.forEach(video=>{
    if(video!==selected){video.pause();video.preload='metadata';return}
    video.preload='auto';loadVideo(video);
+   if(video===hero&&window.MarHeroPreview&&!window.MarHeroPreview.canPlay())return;
    if(video.paused)video.play().then(()=>{if(activeVideo!==video)video.pause()}).catch(()=>{});
   });
  }
@@ -125,6 +127,10 @@
  autoplayVideos.forEach(video=>{
   video.autoplay=false;video.muted=true;video.loop=true;video.playsInline=true;video.preload='metadata';
   video.addEventListener('loadedmetadata',scheduleVideoPlayback);
+  if(video===hero){
+   video.addEventListener('mar-hero-progress',scheduleVideoPlayback);
+   video.addEventListener('waiting',()=>{if(video===activeVideo&&window.MarHeroPreview?.isBuffering()&&!video.paused){video.pause();scheduleVideoPlayback()}});
+  }
  });
  if('IntersectionObserver' in window){
   const videoPreloadObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{

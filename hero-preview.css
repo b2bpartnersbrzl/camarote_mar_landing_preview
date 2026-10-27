@@ -1,0 +1,13 @@
+.mar-hero-poster-preview {
+ position:absolute;
+ top:var(--mar-header);
+ left:0;
+ width:100%;
+ height:calc(100% - var(--mar-header));
+ background:#03171b url('assets/cliente-20261019/capa-aftermovie.jpg') center / cover no-repeat;
+ pointer-events:none;
+}
+.mar-hero-poster-preview[hidden] { display:none; }
+@media (max-width:640px) {
+ .mar-hero-poster-preview { background-image:url('assets/cliente-20261019/capa-aftermovie-mobile.jpg'); }
+}
