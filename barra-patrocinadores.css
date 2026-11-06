@@ -1,0 +1,22 @@
+/* Barra fornecida pelo cliente, preservada sem alteração. */
+.mar-2027 .footer__row { display:flex; width:100%; justify-content:space-between; gap:24px; }
+.mar-2027 .sponsor-bar { width:min(100%, 780px); flex:1 1 600px; }
+.mar-2027 .sponsor-bar__desktop { display:block; width:100%; height:auto; }
+.mar-2027 .sponsor-bar__mobile { display:none; }
+.mar-2027 .footer .social { flex:0 0 auto; width:auto; }
+.mar-2027 .sponsor-inner-footer .sponsor-bar { flex:0 1 780px; }
+@media (max-width: 767px) {
+ .mar-2027 .footer__row { flex-direction:column; align-items:flex-start; gap:24px; }
+ .mar-2027 .sponsor-bar { flex:0 1 auto; width:100%; }
+ .mar-2027 .sponsor-bar__desktop { display:none; }
+ .mar-2027 .sponsor-bar__mobile { display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+ .mar-2027 .sponsor-crop { position:relative; display:block; overflow:hidden; }
+ .mar-2027 .sponsor-crop img { position:absolute; top:0; max-width:none; height:auto; }
+ .mar-2027 .sponsor-crop--realizacao { width:min(54%, 225px); aspect-ratio:770 / 300; }
+ .mar-2027 .sponsor-crop--realizacao img { width:317.4%; left:0; }
+ .mar-2027 .sponsor-crop--patrocinadores { width:min(100%, 420px); aspect-ratio:1303 / 300; }
+ .mar-2027 .sponsor-crop--patrocinadores img { width:187.6%; left:-59.1%; }
+ .mar-2027 .sponsor-crop--apoio { width:min(32%, 135px); aspect-ratio:371 / 300; }
+ .mar-2027 .sponsor-crop--apoio img { width:658.8%; left:-558.8%; }
+ .mar-2027 .footer .social { width:100%; justify-content:flex-start; }
+}
