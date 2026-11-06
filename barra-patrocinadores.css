@@ -1,22 +1,32 @@
-/* Barra fornecida pelo cliente, preservada sem alteração. */
-.mar-2027 .footer__row { display:flex; width:100%; justify-content:space-between; gap:24px; }
-.mar-2027 .sponsor-bar { width:min(100%, 780px); flex:1 1 600px; }
+/* Arte original do cliente; recortes responsivos feitos apenas por CSS. */
+.mar-2027 .footer { padding:18px 11% 24px 40px; }
+.mar-2027 .footer__content { max-width:none; }
+.mar-2027 .footer__row { display:flex; width:100%; align-items:center; justify-content:space-between; gap:32px; }
+.mar-2027 .sponsor-bar { width:760px; max-width:100%; flex:0 1 760px; min-width:0; }
 .mar-2027 .sponsor-bar__desktop { display:block; width:100%; height:auto; }
 .mar-2027 .sponsor-bar__mobile { display:none; }
-.mar-2027 .footer .social { flex:0 0 auto; width:auto; }
-.mar-2027 .sponsor-inner-footer .sponsor-bar { flex:0 1 780px; }
-@media (max-width: 767px) {
- .mar-2027 .footer__row { flex-direction:column; align-items:flex-start; gap:24px; }
- .mar-2027 .sponsor-bar { flex:0 1 auto; width:100%; }
+.mar-2027 .footer .social { flex:0 0 auto; width:auto; gap:14px; align-self:flex-end; margin-bottom:16px; }
+.mar-2027 .footer .social a { border:0; background:none; }
+.mar-2027 .sponsor-inner-footer { justify-content:flex-start; }
+.mar-2027 .sponsor-inner-footer .sponsor-bar { flex:0 1 760px; }
+@media (min-width:768px) and (max-width:1099px) {
+ .mar-2027 .footer { padding:24px 40px 90px; }
+ .mar-2027 .footer__row { flex-wrap:wrap; gap:12px; }
+ .mar-2027 .footer .social { margin:0 0 0 auto; }
+}
+@media (max-width:767px) {
+ .mar-2027 .footer { padding:28px 20px calc(94px + env(safe-area-inset-bottom, 0px)); }
+ .mar-2027 .footer__row { flex-direction:column; align-items:flex-start; gap:20px; }
+ .mar-2027 .sponsor-bar, .mar-2027 .sponsor-inner-footer .sponsor-bar { flex:0 1 auto; width:100%; }
  .mar-2027 .sponsor-bar__desktop { display:none; }
- .mar-2027 .sponsor-bar__mobile { display:flex; flex-direction:column; align-items:flex-start; gap:12px; }
+ .mar-2027 .sponsor-bar__mobile { display:flex; flex-direction:column; align-items:flex-start; gap:20px; }
  .mar-2027 .sponsor-crop { position:relative; display:block; overflow:hidden; }
- .mar-2027 .sponsor-crop img { position:absolute; top:0; max-width:none; height:auto; }
- .mar-2027 .sponsor-crop--realizacao { width:min(54%, 225px); aspect-ratio:770 / 300; }
- .mar-2027 .sponsor-crop--realizacao img { width:317.4%; left:0; }
- .mar-2027 .sponsor-crop--patrocinadores { width:min(100%, 420px); aspect-ratio:1303 / 300; }
- .mar-2027 .sponsor-crop--patrocinadores img { width:187.6%; left:-59.1%; }
- .mar-2027 .sponsor-crop--apoio { width:min(32%, 135px); aspect-ratio:371 / 300; }
- .mar-2027 .sponsor-crop--apoio img { width:658.8%; left:-558.8%; }
- .mar-2027 .footer .social { width:100%; justify-content:flex-start; }
+ .mar-2027 .sponsor-crop img { position:absolute; top:-31.5789%; max-width:none; height:auto; }
+ .mar-2027 .sponsor-crop--realizacao { width:190px; max-width:100%; aspect-ratio:770 / 190; }
+ .mar-2027 .sponsor-crop--realizacao img { width:317.4026%; left:0; }
+ .mar-2027 .sponsor-crop--patrocinadores { width:min(100%, 420px); aspect-ratio:1303 / 190; }
+ .mar-2027 .sponsor-crop--patrocinadores img { width:187.5672%; left:-59.0944%; }
+ .mar-2027 .sponsor-crop--apoio { width:110px; aspect-ratio:371 / 190; }
+ .mar-2027 .sponsor-crop--apoio img { width:658.7601%; left:-558.7601%; }
+ .mar-2027 .footer .social { width:100%; justify-content:flex-start; gap:4px; margin:0; align-self:auto; }
 }
