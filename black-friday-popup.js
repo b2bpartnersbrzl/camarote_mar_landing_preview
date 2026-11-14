@@ -13,7 +13,7 @@
     return;
   }
   const previewHost = ['localhost', '127.0.0.1', '[::1]', 'b2bpartnersbrzl.github.io'].includes(location.hostname);
-  const preview = previewHost && new URLSearchParams(location.search).get('popup') === 'black-friday';
+  const preview = location.hostname === 'b2bpartnersbrzl.github.io' || (previewHost && new URLSearchParams(location.search).get('popup') === 'black-friday');
   const seenKey = 'mar-black-friday-2026-seen';
   if (!preview && !active(Date.now())) return;
   try { if (!preview && sessionStorage.getItem(seenKey)) return; } catch (_) {}

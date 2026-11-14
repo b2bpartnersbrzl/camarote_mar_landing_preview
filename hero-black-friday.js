@@ -8,7 +8,7 @@
     return;
   }
   const testHost = ['localhost', '127.0.0.1', '[::1]', 'b2bpartnersbrzl.github.io'].includes(location.hostname);
-  const preview = testHost && new URLSearchParams(location.search).get('hero') === 'black-friday';
+  const preview = location.hostname === 'b2bpartnersbrzl.github.io' || (testHost && new URLSearchParams(location.search).get('hero') === 'black-friday');
   const enabled = preview || active(Date.now());
   window.MarHeroCampaign = { active: enabled };
   if (!enabled) return;
