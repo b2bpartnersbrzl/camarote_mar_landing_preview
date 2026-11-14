@@ -15,10 +15,14 @@
   document.documentElement.classList.add('mar-bf-hero-active');
   // Bloqueia o carregamento do MP4 antes de a seção ser construída.
   window.MarHeroPreview = { start() {}, canPlay: () => false, isBuffering: () => false };
-  document.addEventListener('DOMContentLoaded', () => {
+  const target = 'https://www.ticketmaster.com.br/event/rio-carnaval-2027-camarote-mar-comissarios/CLIENTEVIP';
+  let mounted = false;
+  function mount() {
+    if (mounted) return;
     const hero = document.querySelector('.mar-hero');
     const button = hero?.querySelector('.mar-hero-bottom a');
     if (!hero || !button) return;
+    mounted = true;
     const lang = document.documentElement.lang.slice(0, 2);
     const copy = {
       pt: { button: 'COMPRE AGORA', offer: 'Combos com até R$ 850 de desconto. Em até 3 vezes sem juros.', date: '16 a 27 de novembro · Ingressos limitados' },
@@ -41,7 +45,7 @@
     date.textContent = copy.date;
     details.append(offer, date);
     hero.insertBefore(details, button.parentElement);
-    button.href = 'https://www.ticketmaster.com.br/event/rio-carnaval-2027-camarote-mar-comissarios/CLIENTEVIP';
+    button.href = target;
     button.textContent = copy.button;
     const video = hero.querySelector('video');
     video?.pause();
@@ -57,5 +61,14 @@
       document.dispatchEvent(new Event('mar-campaign-end'));
       window.dispatchEvent(new Event('resize'));
     }, 1000);
+  }
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'interactive') mount();
+  });
+  document.addEventListener('DOMContentLoaded', () => {
+    mount();
+    // O controlador legado normaliza links Ticketmaster durante a inicialização.
+    const button = document.querySelector('.mar-hero-bottom a');
+    if (window.MarHeroCampaign.active && button) button.href = target;
   }, { once: true });
 })();
