@@ -1,0 +1,35 @@
+.mar-bf-popup {
+  width: min(600px, 92vw, calc(100svh - 48px));
+  max-width: 92vw;
+  max-height: calc(100svh - 48px);
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.3);
+  background: #0c1116;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 12px 60px #0009;
+}
+.mar-bf-popup::backdrop { background: rgba(0,0,0,.78); }
+.mar-bf-open { overflow: hidden; }
+.mar-bf-art { display: block; width: 100%; height: auto; }
+.mar-bf-close {
+  position: absolute; top: 8px; right: 8px;
+  width: 44px; height: 44px; border: 1px solid #fff7; border-radius: 50%;
+  background: #071016e8; color: white; font: 30px/1 Arial, sans-serif;
+  cursor: pointer; display: grid; place-items: center; padding: 0;
+}
+.mar-bf-timer {
+  position: absolute; top: 71.5%; left: 23%; width: 54%; height: 10.5%;
+  background: #0c1116; border-radius: 5px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  font-family: Arial, sans-serif; font-variant-numeric: tabular-nums;
+}
+.mar-bf-timer span { font-size: clamp(19px, 4.5vw, 34px); line-height: 1.15; font-weight: 300; letter-spacing: .04em; }
+.mar-bf-timer small { font-size: clamp(7px, 1.6vw, 10px); letter-spacing: .09em; margin-top: 4px; }
+.mar-bf-buy { position: absolute; left: 24.5%; top: 83.5%; width: 51%; height: 10%; border-radius: 99px; }
+.mar-bf-buy:hover { background: #fff1; }
+.mar-bf-buy:focus-visible, .mar-bf-close:focus-visible { outline: 3px solid white; outline-offset: -3px; }
+@media (max-height: 450px) {
+  .mar-bf-timer span { font-size: 19px; }
+  .mar-bf-timer small { font-size: 7px; margin-top: 1px; }
+}
