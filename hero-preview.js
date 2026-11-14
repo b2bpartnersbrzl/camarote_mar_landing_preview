@@ -1,6 +1,12 @@
 /* Prévia do hero: mantém o vídeo original e espera uma reserva antes de reproduzir. */
 (() => {
  'use strict';
+ if (window.MarHeroCampaign?.active) {
+  document.addEventListener('mar-campaign-end', initializeHero, {once:true});
+  return;
+ }
+ initializeHero();
+ function initializeHero() {
  const video = document.querySelector('.mar-hero-video');
  const cover = document.querySelector('.mar-hero-poster-preview');
  if (!video) return;
@@ -89,4 +95,5 @@
  video.addEventListener('error', () => { if (mode === 'buffer') fallback(); });
  window.MarHeroPreview = {start, canPlay, isBuffering:() => mode === 'buffer'};
  if (!location.hash || location.hash === '#hero') start();
+ }
 })();

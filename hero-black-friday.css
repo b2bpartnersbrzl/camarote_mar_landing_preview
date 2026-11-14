@@ -1,0 +1,18 @@
+.mar-bf-hero-active .mar-hero-video,
+.mar-bf-hero-active .mar-hero-poster-preview,
+.mar-bf-hero-active .mar-hero-shade,
+.mar-bf-hero-active .mar-dates { display: none !important; }
+.mar-bf-hero-active .mar-hero { background: #091118; }
+.mar-bf-hero-art { display: block; position: absolute; top: var(--mar-header); left: 0; width: 100%; height: calc(100% - var(--mar-header)); object-fit: contain; }
+.mar-bf-hero-active .mar-hero-bottom { z-index: 1; bottom: 6%; padding: 0 20px; }
+.mar-bf-hero-active .mar-hero-bottom .mar-button { min-height: 48px; background: #071820; border: 1px solid #fff9; color: white; }
+.mar-bf-hero-details { display: none; }
+@media (max-width: 767px) {
+ .mar-bf-hero-active .mar-hero { height: auto; min-height: 0; padding-bottom: 32px; }
+ .mar-bf-hero-art { position: static; height: auto; width: 100%; }
+ .mar-bf-hero-details { display: block; padding: 20px 28px; text-align: center; color: white; }
+ .mar-bf-hero-details p { margin: 0 0 10px; font-size: 19px; line-height: 1.35; }
+ .mar-bf-hero-details small { font-size: 12px; line-height: 1.4; }
+ .mar-bf-hero-active .mar-hero-bottom { position: static; padding: 0 24px; }
+ .mar-bf-hero-active .mar-hero-bottom .mar-button { font-size: 15px; }
+}
