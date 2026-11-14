@@ -69,6 +69,9 @@
     mount();
     // O controlador legado normaliza links Ticketmaster durante a inicialização.
     const button = document.querySelector('.mar-hero-bottom a');
-    if (window.MarHeroCampaign.active && button) button.href = target;
+    if (window.MarHeroCampaign.active && button) {
+      button.href = target;
+      button.textContent = ({pt:'COMPRE AGORA',en:'BUY NOW',es:'COMPRA AHORA'})[document.documentElement.lang.slice(0,2)] || 'COMPRE AGORA';
+    }
   }, { once: true });
 })();
