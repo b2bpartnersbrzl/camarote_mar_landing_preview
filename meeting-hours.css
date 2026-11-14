@@ -1,0 +1,13 @@
+.meeting-hours { margin: 22px 0; }
+.meeting-hours h3 { margin: 0 0 10px; font: inherit; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.meeting-hours dl { margin: 0; }
+.meeting-hours dl > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 6px 0; font-size: 14px; line-height: 1.5; }
+.meeting-hours dt { font-weight: 400; }
+.meeting-hours dd { margin: 0; white-space: nowrap; font-weight: 600; }
+.mar-meeting .meeting-hours { max-width: 460px; }
+.mar-meeting .meeting-hours + address { margin-top: 18px; }
+@media (max-width: 480px) {
+ .meeting-hours dl > div { flex-wrap: wrap; gap: 0 16px; margin: 12px 0; font-size: 15px; }
+ .meeting-hours dt { flex-basis: 100%; }
+ .meeting-hours h3 { font-size: 16px; }
+}

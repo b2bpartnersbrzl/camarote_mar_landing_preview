@@ -73,7 +73,7 @@
     }),
     Object.freeze({
       question: 'Where is the Meeting Point and how does the transfer service work?',
-      answer: 'The official CAMAROTE MAR Meeting Point is at Othon Palace Copacabana Rio, located at Avenida Atlântica, 3264, Copacabana, Rio de Janeiro. This is also the boarding point for the official transfer service. Schedules will be announced in advance through our official channels.'
+      answer: 'The official CAMAROTE MAR Meeting Point is at Othon Palace Copacabana Rio, located at Avenida Atlântica, 3264, Copacabana, Rio de Janeiro. This is also the boarding point for the official transfer service. '
     }),
     Object.freeze({
       question: 'How can I buy a ticket?',
