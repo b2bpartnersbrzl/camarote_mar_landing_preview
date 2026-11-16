@@ -35,8 +35,39 @@
     image.className = 'mar-bf-hero-art';
     image.alt = `Black Friday CAMAROTE MAR. ${copy.date}. ${copy.offer}`;
     image.fetchPriority = 'high';
-    image.src = new URL(`assets/cliente-20261114/hero-black-friday-${['en', 'es'].includes(lang) ? lang : 'pt'}.png`, document.baseURI).href;
-    hero.prepend(image);
+    const artworkLang = ['en', 'es'].includes(lang) ? lang : 'pt';
+    const picture = document.createElement('picture');
+    const expanded = document.createElement('source');
+    expanded.media = '(min-width: 768px)';
+    expanded.srcset = new URL(`assets/cliente-20261116/hero-black-friday-laterais-${artworkLang}.png`, document.baseURI).href;
+    picture.append(expanded, image);
+    image.src = new URL(`assets/cliente-20261114/hero-black-friday-${artworkLang}.png`, document.baseURI).href;
+    hero.prepend(picture);
+    const desktop = matchMedia(expanded.media);
+    const original = artworkLang === 'pt' ? { width: 1200, height: 676, side: 414 } : { width: 1671, height: 941, side: 576 };
+    // Conserva o tamanho e a posição do centro original; só as laterais ficam maiores.
+    function fitArtwork() {
+      if (!desktop.matches) {
+        image.classList.remove('mar-bf-hero-art-expanded');
+        ['width', 'height', 'left', 'top'].forEach(property => image.style.removeProperty(property));
+        return;
+      }
+      const header = document.querySelector('.mar-header')?.getBoundingClientRect().height || 0;
+      const width = hero.clientWidth;
+      const height = Math.max(0, hero.clientHeight - header);
+      const scale = Math.min(width / original.width, height / original.height);
+      const expandedWidth = (original.width + 2 * original.side) * scale;
+      image.classList.add('mar-bf-hero-art-expanded');
+      image.style.width = `${expandedWidth}px`;
+      image.style.height = `${original.height * scale}px`;
+      image.style.left = `${(width - expandedWidth) / 2}px`;
+      image.style.top = `${header + (height - original.height * scale) / 2}px`;
+    }
+    const observer = new ResizeObserver(fitArtwork);
+    observer.observe(hero);
+    desktop.addEventListener('change', fitArtwork);
+    image.addEventListener('load', fitArtwork);
+    fitArtwork();
     const details = document.createElement('div');
     details.className = 'mar-bf-hero-details';
     const offer = document.createElement('p');
@@ -53,7 +84,9 @@
     const timer = setInterval(() => {
       if (preview || active(Date.now())) return;
       clearInterval(timer);
-      image.remove(); details.remove();
+      observer.disconnect();
+      desktop.removeEventListener('change', fitArtwork);
+      picture.remove(); details.remove();
       button.setAttribute('href', previous.href);
       button.textContent = previous.text;
       window.MarHeroCampaign.active = false;

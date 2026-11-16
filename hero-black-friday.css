@@ -4,6 +4,7 @@
 .mar-bf-hero-active .mar-dates { display: none !important; }
 .mar-bf-hero-active .mar-hero { background: #091118; }
 .mar-bf-hero-art { display: block; position: absolute; top: var(--mar-header); left: 0; width: 100%; height: calc(100% - var(--mar-header)); object-fit: contain; }
+.mar-bf-hero-art-expanded { max-width: none; }
 .mar-bf-hero-active .mar-hero-bottom { z-index: 1; bottom: 6%; padding: 0 20px; }
 .mar-bf-hero-active .mar-hero-bottom .mar-button { min-height: 48px; background: #071820; border: 1px solid #fff9; color: white; }
 .mar-bf-hero-details { display: none; }
